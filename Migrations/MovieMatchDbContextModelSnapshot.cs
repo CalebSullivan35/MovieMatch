@@ -51,7 +51,7 @@ namespace MovieMatch.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "a146fcc8-440b-4b85-bcb3-5b297c423cb7",
+                            ConcurrencyStamp = "a10ced0f-583e-4d10-8b6f-6fc4223da0a1",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace MovieMatch.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "5743de5b-18f0-4e88-b940-a565201bd503",
+                            ConcurrencyStamp = "ad612acc-826e-49ed-8bd1-473842906a4f",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEO8IXBAWwMgQmYQP851J3Tt8iwdvQe4O3yCU0ci54bUxB2xNyW6LuRcQ/wC4YYjWaA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPIpizIhlWaPusOFN+JtGbwAQIzKgWzoirZzcDoXnEmiuuov/+Q5WVYr2sx2IJsvEw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "e1de59e9-6223-452f-a620-b6fce0194afb",
+                            SecurityStamp = "cc604d06-fd3a-4135-b312-b8d53a72d3d8",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -250,6 +250,139 @@ namespace MovieMatch.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MovieMatch.Models.Genre", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("Genre");
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.Movie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Budget")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("OriginalLanguage")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Overview")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Popularity")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("PosterPath")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("ReleaseDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<decimal>("Revenue")
+                        .HasColumnType("numeric");
+
+                    b.Property<decimal>("RunTime")
+                        .HasColumnType("numeric");
+
+                    b.Property<string>("Tagline")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("VoteAverage")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Movie");
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Content")
+                        .HasColumnType("text");
+
+                    b.Property<int>("MovideId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("MovieId")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal>("Rating")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("UserProfileId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MovieId");
+
+                    b.HasIndex("UserProfileId");
+
+                    b.ToTable("Reviews");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Content = "Really Good Movie!",
+                            MovideId = 926393,
+                            Rating = 4m,
+                            UserProfileId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Content = "Trash Movie!",
+                            MovideId = 968051,
+                            Rating = 1m,
+                            UserProfileId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Content = "Amazing! Good Movie!",
+                            MovideId = 1008042,
+                            Rating = 2m,
+                            UserProfileId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Content = "Pooping! Good Movie!",
+                            MovideId = 1151534,
+                            Rating = 3m,
+                            UserProfileId = 1
+                        });
+                });
+
             modelBuilder.Entity("MovieMatch.Models.UserProfile", b =>
                 {
                     b.Property<int>("Id")
@@ -259,19 +392,15 @@ namespace MovieMatch.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Address")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("IdentityUserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -288,6 +417,45 @@ namespace MovieMatch.Migrations
                             FirstName = "Admina",
                             IdentityUserId = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             LastName = "Strator"
+                        });
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.UserProfileMovie", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("MovideId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserProfileId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("userProfileMovies");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            MovideId = 926393,
+                            UserProfileId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            MovideId = 968051,
+                            UserProfileId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            MovideId = 1151534,
+                            UserProfileId = 1
                         });
                 });
 
@@ -342,15 +510,42 @@ namespace MovieMatch.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MovieMatch.Models.Genre", b =>
+                {
+                    b.HasOne("MovieMatch.Models.Movie", null)
+                        .WithMany("Genres")
+                        .HasForeignKey("MovieId");
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.Review", b =>
+                {
+                    b.HasOne("MovieMatch.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId");
+
+                    b.HasOne("MovieMatch.Models.UserProfile", "UserProfile")
+                        .WithMany()
+                        .HasForeignKey("UserProfileId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Movie");
+
+                    b.Navigation("UserProfile");
+                });
+
             modelBuilder.Entity("MovieMatch.Models.UserProfile", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
                         .WithMany()
-                        .HasForeignKey("IdentityUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("IdentityUserId");
 
                     b.Navigation("IdentityUser");
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.Movie", b =>
+                {
+                    b.Navigation("Genres");
                 });
 #pragma warning restore 612, 618
         }

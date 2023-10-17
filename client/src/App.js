@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { tryGetLoggedInUser } from "./managers/authManager";
-import { Spinner } from "reactstrap";
+
 import ApplicationViews from "./components/ApplicationViews";
-import NavBar from "./components/navbar";
+import NavBar from "./components/NavBar";
 
 function App() {
  const [loggedInUser, setLoggedInUser] = useState();
@@ -18,7 +18,7 @@ function App() {
 
  // wait to get a definite logged-in state before rendering
  if (loggedInUser === undefined) {
-  return <Spinner />;
+  return <h1>Waiting</h1>;
  }
 
  return (

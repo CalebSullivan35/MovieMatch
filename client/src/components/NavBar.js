@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { logout } from "../managers/authManager";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
  Button,
@@ -8,9 +9,9 @@ import {
  NavItem,
  Navbar,
  NavbarBrand,
+ NavbarText,
  NavbarToggler,
 } from "reactstrap";
-import { logout } from "../managers/authManager";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
  const [open, setOpen] = useState(false);
@@ -30,6 +31,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
        <Nav navbar></Nav>
       </Collapse>
       <Button
+       className=""
        color="primary"
        onClick={(e) => {
         e.preventDefault();
@@ -47,7 +49,9 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
      <Nav navbar>
       <NavItem>
        <NavLink tag={RRNavLink} to="/login">
-        <Button color="primary">Login</Button>
+        <button className="btn btn-primary" color="primary">
+         Login
+        </button>
        </NavLink>
       </NavItem>
      </Nav>

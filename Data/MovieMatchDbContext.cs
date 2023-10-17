@@ -8,6 +8,8 @@ public class MovieMatchDbContext : IdentityDbContext<IdentityUser>
 {
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
+    public DbSet<Review> Reviews { get; set; }
+    public DbSet<UserProfileMovie>userProfileMovies { get; set; }
 
     public MovieMatchDbContext(DbContextOptions<MovieMatchDbContext> context, IConfiguration config) : base(context)
     {
@@ -47,6 +49,59 @@ public class MovieMatchDbContext : IdentityDbContext<IdentityUser>
             Address = "101 Main Street",
         });
 
-       
+    modelBuilder.Entity<Review>().HasData(new Review[]
+    {
+        new Review
+        {
+          Id =1,
+          UserProfileId =1,
+          MovideId = 926393,
+          Rating = 4,
+          Content = "Really Good Movie!"
+        },
+       new Review {
+          Id =2,
+          UserProfileId =1,
+          MovideId = 968051,
+          Rating = 1,
+          Content = "Trash Movie!"
+        },
+       new Review {
+          Id =3,
+          UserProfileId =1,
+          MovideId = 1008042,
+          Rating = 2,
+          Content = "Amazing! Good Movie!"
+        },
+       new Review {
+          Id =4,
+          UserProfileId =1,
+          MovideId = 1151534,
+          Rating = 3,
+          Content = "Pooping! Good Movie!"
+        },
+    });
+
+    modelBuilder.Entity<UserProfileMovie>().HasData(new UserProfileMovie[]
+    {
+      new UserProfileMovie
+      {
+        Id =1,
+        MovideId = 926393,
+        UserProfileId = 1,
+      },
+      new UserProfileMovie
+      {
+        Id =2,
+        MovideId = 968051,
+        UserProfileId = 1,
+      },
+      new UserProfileMovie
+      {
+        Id =3,
+        MovideId = 1151534,
+        UserProfileId = 1,
+      }
+    });
     }
 }

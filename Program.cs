@@ -2,6 +2,8 @@ using System.Text.Json.Serialization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using MovieMatch.Data;
+using TmdbEasy;
+using TmdbEasy.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -54,6 +56,9 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
 // allows our api endpoints to access the database through Entity Framework Core
 builder.Services.AddNpgsql<MovieMatchDbContext>(builder.Configuration["MovieMatchDbConnectionString"]);
 
+
+var options = new TmdbEasyOptions(builder.Configuration["TMDBAPIKEY"]);
+builder.Services.AddTmdbEasy(options);
 
 var app = builder.Build();
 
