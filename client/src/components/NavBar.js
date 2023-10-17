@@ -1,17 +1,6 @@
 import { useState } from "react";
 import { logout } from "../managers/authManager";
-import { NavLink as RRNavLink } from "react-router-dom";
-import {
- Button,
- Collapse,
- Nav,
- NavLink,
- NavItem,
- Navbar,
- NavbarBrand,
- NavbarText,
- NavbarToggler,
-} from "reactstrap";
+import { NavLink } from "react-router-dom";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
  const [open, setOpen] = useState(false);
@@ -19,44 +8,39 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
  const toggleNavbar = () => setOpen(!open);
 
  return (
-  <div>
-   <Navbar color="light" light fixed="true" expand="lg">
-    <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-     Movie Match
-    </NavbarBrand>
-    {loggedInUser ? (
-     <>
-      <NavbarToggler onClick={toggleNavbar} />
-      <Collapse isOpen={open} navbar>
-       <Nav navbar></Nav>
-      </Collapse>
-      <Button
-       className=""
-       color="primary"
-       onClick={(e) => {
-        e.preventDefault();
-        setOpen(false);
-        logout().then(() => {
-         setLoggedInUser(null);
+  <nav className="bg-light">
+   <div className="container mx-auto py-4">
+    <div className="flex justify-between items-center">
+     <NavLink to="/" className="text-2xl text-blue-600 font-bold">
+      Movie Match
+     </NavLink>
+     {loggedInUser ? (
+      <div className="flex items-center">
+       <button
+        className="px-4 py-2 bg-blue-500 text-white rounded-lg"
+        onClick={(e) => {
+         e.preventDefault();
          setOpen(false);
-        });
-       }}
-      >
-       Logout
-      </Button>
-     </>
-    ) : (
-     <Nav navbar>
-      <NavItem>
-       <NavLink tag={RRNavLink} to="/login">
-        <button className="btn btn-primary" color="primary">
+         logout().then(() => {
+          setLoggedInUser(null);
+          setOpen(false);
+         });
+        }}
+       >
+        Logout
+       </button>
+      </div>
+     ) : (
+      <div className="space-x-4">
+       <NavLink to="/login">
+        <button className="px-4 py-2 bg-blue-500 text-white rounded-lg">
          Login
         </button>
        </NavLink>
-      </NavItem>
-     </Nav>
-    )}
-   </Navbar>
-  </div>
+      </div>
+     )}
+    </div>
+   </div>
+  </nav>
  );
 }

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { register } from "../../managers/authManager";
 import { Link, useNavigate } from "react-router-dom";
-import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
 export default function Register({ setLoggedInUser }) {
  const [firstName, setFirstName] = useState("");
@@ -12,7 +11,7 @@ export default function Register({ setLoggedInUser }) {
  const [password, setPassword] = useState("");
  const [confirmPassword, setConfirmPassword] = useState("");
 
- const [passwordMismatch, setPasswordMismatch] = useState();
+ const [passwordMismatch, setPasswordMismatch] = useState(false);
 
  const navigate = useNavigate();
 
@@ -38,62 +37,71 @@ export default function Register({ setLoggedInUser }) {
  };
 
  return (
-  <div className="container" style={{ maxWidth: "500px" }}>
-   <h3>Sign Up</h3>
-   <FormGroup>
-    <Label>First Name</Label>
-    <Input
+  <div className="container mx-auto max-w-md p-4 bg-white shadow-md rounded-lg">
+   <h3 className="text-2xl font-semibold mb-4">Sign Up</h3>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     First Name
+    </label>
+    <input
+     className="w-full border rounded-lg p-2"
      type="text"
      value={firstName}
-     onChange={(e) => {
-      setFirstName(e.target.value);
-     }}
+     onChange={(e) => setFirstName(e.target.value)}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label>Last Name</Label>
-    <Input
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     Last Name
+    </label>
+    <input
+     className="w-full border rounded-lg p-2"
      type="text"
      value={lastName}
-     onChange={(e) => {
-      setLastName(e.target.value);
-     }}
+     onChange={(e) => setLastName(e.target.value)}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label>Email</Label>
-    <Input
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     Email
+    </label>
+    <input
+     className="w-full border rounded-lg p-2"
      type="email"
      value={email}
-     onChange={(e) => {
-      setEmail(e.target.value);
-     }}
+     onChange={(e) => setEmail(e.target.value)}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label>User Name</Label>
-    <Input
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     User Name
+    </label>
+    <input
+     className="w-full border rounded-lg p-2"
      type="text"
      value={userName}
-     onChange={(e) => {
-      setUserName(e.target.value);
-     }}
+     onChange={(e) => setUserName(e.target.value)}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label>Address</Label>
-    <Input
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     Address
+    </label>
+    <input
+     className="w-full border rounded-lg p-2"
      type="text"
      value={address}
-     onChange={(e) => {
-      setAddress(e.target.value);
-     }}
+     onChange={(e) => setAddress(e.target.value)}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label>Password</Label>
-    <Input
-     invalid={passwordMismatch}
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     Password
+    </label>
+    <input
+     className={`w-full border rounded-lg p-2 ${
+      passwordMismatch ? "border-red-500" : ""
+     }`}
      type="password"
      value={password}
      onChange={(e) => {
@@ -101,11 +109,15 @@ export default function Register({ setLoggedInUser }) {
       setPassword(e.target.value);
      }}
     />
-   </FormGroup>
-   <FormGroup>
-    <Label> Confirm Password</Label>
-    <Input
-     invalid={passwordMismatch}
+   </div>
+   <div className="mb-4">
+    <label className="block text-gray-600 text-sm font-medium mb-1">
+     Confirm Password
+    </label>
+    <input
+     className={`w-full border rounded-lg p-2 ${
+      passwordMismatch ? "border-red-500" : ""
+     }`}
      type="password"
      value={confirmPassword}
      onChange={(e) => {
@@ -113,13 +125,22 @@ export default function Register({ setLoggedInUser }) {
       setConfirmPassword(e.target.value);
      }}
     />
-    <FormFeedback>Passwords do not match!</FormFeedback>
-   </FormGroup>
-   <Button color="primary" onClick={handleSubmit} disabled={passwordMismatch}>
+    {passwordMismatch && (
+     <p className="text-red-500 text-sm">Passwords do not match!</p>
+    )}
+   </div>
+   <button
+    className="w-full bg-blue-500 text-white p-2 rounded-lg mb-4"
+    onClick={handleSubmit}
+    disabled={passwordMismatch}
+   >
     Register
-   </Button>
-   <p>
-    Already signed up? Log in <Link to="/login">here</Link>
+   </button>
+   <p className="text-gray-600 text-sm">
+    Already signed up?{" "}
+    <Link to="/login" className="text-blue-500">
+     Log in here
+    </Link>
    </p>
   </div>
  );

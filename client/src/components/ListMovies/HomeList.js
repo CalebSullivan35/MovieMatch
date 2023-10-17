@@ -27,8 +27,11 @@ export const HomeList = () => {
  }
  return (
   <>
-   <div className="flex flex-col w-screen max-h-screen">
-    <div className="flex flex-row justify-center mb-5 w-11/12 ">
+   <div className="flex flex-col w-screen max-h-screen items-center">
+    <div className="flex justify-start w-11/12">
+     <h1 className="text-4xl mb-5">Latest Releases</h1>
+    </div>
+    <div className="flex mb-5 w-11/12 overflow-x-auto">
      {latestReleasedMovies.results?.map((pm) => (
       <img
        src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
@@ -38,7 +41,10 @@ export const HomeList = () => {
       ></img>
      ))}
     </div>
-    <div className="flex flex-row justify-center mb-5 w-11/12 max-h-48 overflow-x-auto overflow-y-hidden bg-black">
+    <div className="flex justify-start w-11/12">
+     <h1 className="text-4xl mb-5">Trending </h1>
+    </div>
+    <div className="flex mb-5 w-11/12 overflow-x-auto">
      {popularMovies.results?.map((pm) => (
       <img
        src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
@@ -48,7 +54,10 @@ export const HomeList = () => {
       ></img>
      ))}
     </div>
-    <div className="flex flex-row mb-5">
+    <div className="flex justify-start w-11/12">
+     <h1 className="text-4xl mb-5">All Time Top Rated</h1>
+    </div>
+    <div className="flex mb-5 w-11/12 overflow-x-auto">
      {topRatedMovies.results?.map((pm) => (
       <img
        src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
