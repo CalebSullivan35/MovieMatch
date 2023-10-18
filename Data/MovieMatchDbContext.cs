@@ -9,7 +9,7 @@ public class MovieMatchDbContext : IdentityDbContext<IdentityUser>
     private readonly IConfiguration _configuration;
     public DbSet<UserProfile> UserProfiles { get; set; }
     public DbSet<Review> Reviews { get; set; }
-    public DbSet<UserProfileMovie>userProfileMovies { get; set; }
+    public DbSet<UserProfileMovie> UserProfileMovies { get; set; }
 
     public MovieMatchDbContext(DbContextOptions<MovieMatchDbContext> context, IConfiguration config) : base(context)
     {
@@ -87,19 +87,19 @@ public class MovieMatchDbContext : IdentityDbContext<IdentityUser>
       new UserProfileMovie
       {
         Id =1,
-        MovideId = 926393,
+        MatchingMovieInteger = 926393,
         UserProfileId = 1,
       },
       new UserProfileMovie
       {
         Id =2,
-        MovideId = 968051,
+        MatchingMovieInteger = 968051,
         UserProfileId = 1,
       },
       new UserProfileMovie
       {
         Id =3,
-        MovideId = 1151534,
+        MatchingMovieInteger = 1151534,
         UserProfileId = 1,
       }
     });

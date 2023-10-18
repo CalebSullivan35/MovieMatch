@@ -57,33 +57,19 @@ namespace MovieMatch.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(type: "text", nullable: true),
                     Overview = table.Column<string>(type: "text", nullable: true),
-                    ReleaseDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ReleaseDate = table.Column<string>(type: "text", nullable: true),
                     PosterPath = table.Column<string>(type: "text", nullable: true),
                     OriginalLanguage = table.Column<string>(type: "text", nullable: true),
-                    VoteAverage = table.Column<decimal>(type: "numeric", nullable: false),
-                    Popularity = table.Column<decimal>(type: "numeric", nullable: false),
-                    RunTime = table.Column<decimal>(type: "numeric", nullable: false),
-                    Revenue = table.Column<decimal>(type: "numeric", nullable: false),
+                    VoteAverage = table.Column<double>(type: "double precision", nullable: false),
+                    Popularity = table.Column<double>(type: "double precision", nullable: false),
+                    RunTime = table.Column<double>(type: "double precision", nullable: false),
+                    Revenue = table.Column<double>(type: "double precision", nullable: false),
                     Tagline = table.Column<string>(type: "text", nullable: true),
                     Budget = table.Column<decimal>(type: "numeric", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Movie", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "userProfileMovies",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    MovideId = table.Column<int>(type: "integer", nullable: false),
-                    UserProfileId = table.Column<int>(type: "integer", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_userProfileMovies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -233,6 +219,26 @@ namespace MovieMatch.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserProfileMovies",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    MatchingMovieInteger = table.Column<int>(type: "integer", nullable: false),
+                    MovieId = table.Column<int>(type: "integer", nullable: true),
+                    UserProfileId = table.Column<int>(type: "integer", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserProfileMovies", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_UserProfileMovies_Movie_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movie",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Reviews",
                 columns: table => new
                 {
@@ -263,21 +269,21 @@ namespace MovieMatch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "a10ced0f-583e-4d10-8b6f-6fc4223da0a1", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "2b420514-0eb5-481e-8776-b430d37cf9a0", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "ad612acc-826e-49ed-8bd1-473842906a4f", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEPIpizIhlWaPusOFN+JtGbwAQIzKgWzoirZzcDoXnEmiuuov/+Q5WVYr2sx2IJsvEw==", null, false, "cc604d06-fd3a-4135-b312-b8d53a72d3d8", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "0e79edf9-0060-49a5-8c6b-3019dee09e0c", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEI6w9kCJwhls8d4XABRIpiUNGYqMfsloDoVYSDVaOINtAkUszo3mipvunGdiq97dUQ==", null, false, "19d78e99-cc89-4cef-8322-6ee8feaebb19", false, "Administrator" });
 
             migrationBuilder.InsertData(
-                table: "userProfileMovies",
-                columns: new[] { "Id", "MovideId", "UserProfileId" },
+                table: "UserProfileMovies",
+                columns: new[] { "Id", "MatchingMovieInteger", "MovieId", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, 926393, 1 },
-                    { 2, 968051, 1 },
-                    { 3, 1151534, 1 }
+                    { 1, 926393, null, 1 },
+                    { 2, 968051, null, 1 },
+                    { 3, 1151534, null, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -354,6 +360,11 @@ namespace MovieMatch.Migrations
                 column: "UserProfileId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserProfileMovies_MovieId",
+                table: "UserProfileMovies",
+                column: "MovieId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserProfiles_IdentityUserId",
                 table: "UserProfiles",
                 column: "IdentityUserId");
@@ -383,16 +394,16 @@ namespace MovieMatch.Migrations
                 name: "Reviews");
 
             migrationBuilder.DropTable(
-                name: "userProfileMovies");
+                name: "UserProfileMovies");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
-                name: "Movie");
+                name: "UserProfiles");
 
             migrationBuilder.DropTable(
-                name: "UserProfiles");
+                name: "Movie");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

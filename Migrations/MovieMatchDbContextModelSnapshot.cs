@@ -51,7 +51,7 @@ namespace MovieMatch.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "a10ced0f-583e-4d10-8b6f-6fc4223da0a1",
+                            ConcurrencyStamp = "2b420514-0eb5-481e-8776-b430d37cf9a0",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace MovieMatch.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ad612acc-826e-49ed-8bd1-473842906a4f",
+                            ConcurrencyStamp = "0e79edf9-0060-49a5-8c6b-3019dee09e0c",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEPIpizIhlWaPusOFN+JtGbwAQIzKgWzoirZzcDoXnEmiuuov/+Q5WVYr2sx2IJsvEw==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI6w9kCJwhls8d4XABRIpiUNGYqMfsloDoVYSDVaOINtAkUszo3mipvunGdiq97dUQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "cc604d06-fd3a-4135-b312-b8d53a72d3d8",
+                            SecurityStamp = "19d78e99-cc89-4cef-8322-6ee8feaebb19",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -288,20 +288,20 @@ namespace MovieMatch.Migrations
                     b.Property<string>("Overview")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("Popularity")
-                        .HasColumnType("numeric");
+                    b.Property<double>("Popularity")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("PosterPath")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("ReleaseDate")
-                        .HasColumnType("timestamp without time zone");
+                    b.Property<string>("ReleaseDate")
+                        .HasColumnType("text");
 
-                    b.Property<decimal>("Revenue")
-                        .HasColumnType("numeric");
+                    b.Property<double>("Revenue")
+                        .HasColumnType("double precision");
 
-                    b.Property<decimal>("RunTime")
-                        .HasColumnType("numeric");
+                    b.Property<double>("RunTime")
+                        .HasColumnType("double precision");
 
                     b.Property<string>("Tagline")
                         .HasColumnType("text");
@@ -309,8 +309,8 @@ namespace MovieMatch.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("text");
 
-                    b.Property<decimal>("VoteAverage")
-                        .HasColumnType("numeric");
+                    b.Property<double>("VoteAverage")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id");
 
@@ -428,7 +428,10 @@ namespace MovieMatch.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("MovideId")
+                    b.Property<int>("MatchingMovieInteger")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("MovieId")
                         .HasColumnType("integer");
 
                     b.Property<int>("UserProfileId")
@@ -436,25 +439,27 @@ namespace MovieMatch.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("userProfileMovies");
+                    b.HasIndex("MovieId");
+
+                    b.ToTable("UserProfileMovies");
 
                     b.HasData(
                         new
                         {
                             Id = 1,
-                            MovideId = 926393,
+                            MatchingMovieInteger = 926393,
                             UserProfileId = 1
                         },
                         new
                         {
                             Id = 2,
-                            MovideId = 968051,
+                            MatchingMovieInteger = 968051,
                             UserProfileId = 1
                         },
                         new
                         {
                             Id = 3,
-                            MovideId = 1151534,
+                            MatchingMovieInteger = 1151534,
                             UserProfileId = 1
                         });
                 });
@@ -541,6 +546,15 @@ namespace MovieMatch.Migrations
                         .HasForeignKey("IdentityUserId");
 
                     b.Navigation("IdentityUser");
+                });
+
+            modelBuilder.Entity("MovieMatch.Models.UserProfileMovie", b =>
+                {
+                    b.HasOne("MovieMatch.Models.Movie", "Movie")
+                        .WithMany()
+                        .HasForeignKey("MovieId");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("MovieMatch.Models.Movie", b =>
