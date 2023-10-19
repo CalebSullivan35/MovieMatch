@@ -81,7 +81,7 @@ public class UserProfileMovieController : ControllerBase
   }
 
   //delete a relationship
-  [HttpDelete("${id}/delete")]
+  [HttpDelete("{id}/delete")]
   [Authorize]
   public IActionResult deleteRelationship(int id)
   {
