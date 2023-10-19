@@ -3,7 +3,7 @@ import { getMovieDetail } from "../../managers/moveManager";
 import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
-export const MovieDetail = () => {
+export const MovieDetail = ({ loggedInUser }) => {
  const [movie, setMovie] = useState();
  const { id } = useParams();
  async function getData() {
@@ -20,7 +20,7 @@ export const MovieDetail = () => {
 
  return (
   <div className="w-screen h-screen flex justify-center">
-   <MovieCard movie={movie} />
+   <MovieCard movie={movie} loggedInUser={loggedInUser} />
   </div>
  );
 };

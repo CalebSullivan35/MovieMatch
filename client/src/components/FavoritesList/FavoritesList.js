@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react";
-import { getUserProfileMovieByUserId } from "../../managers/userProfileMovieManager";
+import {
+ deleteUserProfileMovie,
+ getUserProfileMovieByUserId,
+} from "../../managers/userProfileMovieManager";
 import { useNavigate } from "react-router-dom";
 import { GrSubtractCircle } from "react-icons/gr";
 
@@ -10,12 +13,18 @@ export const FavoritesList = ({ loggedInUser }) => {
   getUserProfileMovieByUserId(loggedInUser.id).then(setMyFavorites);
  }
 
+ function handleDeleteButton(id) {
+  deleteUserProfileMovie(id).then(() => getData());
+ }
+
  useEffect(() => {
   getData();
  }, []);
+
  if (myFavorites.length < 1) {
   return "";
  }
+
  return (
   <div className="w-screen h-screen">
    <h1>Favorites: </h1>
@@ -30,7 +39,12 @@ export const FavoritesList = ({ loggedInUser }) => {
          navigate(`/movie/${f.movie.id}`);
         }}
        ></img>
-       <button className="btn-circle btn-warning btn absolute bottom-0 left-0">
+       <button
+        className="btn-circle btn-warning btn absolute bottom-0 left-0"
+        onClick={() => {
+         handleDeleteButton(f.id);
+        }}
+       >
         <GrSubtractCircle className="text-4xl" />
        </button>
       </div>

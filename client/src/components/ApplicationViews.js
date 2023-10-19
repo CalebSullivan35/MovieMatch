@@ -29,7 +29,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
      path="/movie/:id"
      element={
       <AuthorizedRoute loggedInUser={loggedInUser}>
-       <MovieDetail />
+       <MovieDetail loggedInUser={loggedInUser} />
       </AuthorizedRoute>
      }
     ></Route>
