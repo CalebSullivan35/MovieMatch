@@ -2,12 +2,17 @@ import { useParams } from "react-router-dom";
 import { getMovieDetail } from "../../managers/moveManager";
 import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
+import { MovieReviews } from "./MovieReviews";
+import { ReviewForm } from "./review/ReviewForm";
+import { getReviewsByMovieId } from "../../managers/reviewManager";
 
 export const MovieDetail = ({ loggedInUser }) => {
  const [movie, setMovie] = useState();
+ const [reviews, setReviews] = useState([]);
  const { id } = useParams();
  async function getData() {
   getMovieDetail(parseInt(id)).then(setMovie);
+  getReviewsByMovieId(parseInt(id)).then(setReviews);
  }
 
  useEffect(() => {
@@ -19,8 +24,18 @@ export const MovieDetail = ({ loggedInUser }) => {
  }
 
  return (
-  <div className="w-screen h-screen flex justify-center">
+  <div
+   className="w-screen h-screen flex 
+  flex-col items-center"
+  >
    <MovieCard movie={movie} loggedInUser={loggedInUser} />
+   <ReviewForm movie={movie} loggedInUser={loggedInUser} getData={getData} />
+   <MovieReviews
+    reviews={reviews}
+    movie={movie}
+    loggedInUser={loggedInUser}
+    getData={getData}
+   />
   </div>
  );
 };

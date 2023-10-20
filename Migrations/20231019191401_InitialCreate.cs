@@ -245,10 +245,11 @@ namespace MovieMatch.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserProfileId = table.Column<int>(type: "integer", nullable: false),
-                    MovideId = table.Column<int>(type: "integer", nullable: false),
+                    MatchingMovieInteger = table.Column<int>(type: "integer", nullable: false),
                     MovieId = table.Column<int>(type: "integer", nullable: true),
                     Rating = table.Column<decimal>(type: "numeric", nullable: false),
-                    Content = table.Column<string>(type: "text", nullable: true)
+                    Content = table.Column<string>(type: "text", nullable: true),
+                    DateAdded = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -269,12 +270,12 @@ namespace MovieMatch.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "2b420514-0eb5-481e-8776-b430d37cf9a0", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "ca4c1ba1-2cc2-4850-b565-1cae0245fd04", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "0e79edf9-0060-49a5-8c6b-3019dee09e0c", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEI6w9kCJwhls8d4XABRIpiUNGYqMfsloDoVYSDVaOINtAkUszo3mipvunGdiq97dUQ==", null, false, "19d78e99-cc89-4cef-8322-6ee8feaebb19", false, "Administrator" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "96d51313-852d-4fd0-ad85-8b5d040e9a69", "admina@strator.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEM0gBBG8/OVXe6acQ6FyxbSgRQahOc+RrYWbo7fASEfUGysWYM2rWO69Uf99vG/zTQ==", null, false, "b6306d1a-39e6-40e7-987c-b935b4a5a5f9", false, "Administrator" });
 
             migrationBuilder.InsertData(
                 table: "UserProfileMovies",
@@ -298,13 +299,13 @@ namespace MovieMatch.Migrations
 
             migrationBuilder.InsertData(
                 table: "Reviews",
-                columns: new[] { "Id", "Content", "MovideId", "MovieId", "Rating", "UserProfileId" },
+                columns: new[] { "Id", "Content", "DateAdded", "MatchingMovieInteger", "MovieId", "Rating", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, "Really Good Movie!", 926393, null, 4m, 1 },
-                    { 2, "Trash Movie!", 968051, null, 1m, 1 },
-                    { 3, "Amazing! Good Movie!", 1008042, null, 2m, 1 },
-                    { 4, "Pooping! Good Movie!", 1151534, null, 3m, 1 }
+                    { 1, "Really Good Movie!", new DateTime(2023, 10, 19, 12, 0, 1, 0, DateTimeKind.Unspecified), 926393, null, 4m, 1 },
+                    { 2, "Trash Movie!", new DateTime(2023, 10, 19, 14, 0, 1, 0, DateTimeKind.Unspecified), 968051, null, 1m, 1 },
+                    { 3, "Amazing! Good Movie!", new DateTime(2023, 10, 19, 16, 0, 1, 0, DateTimeKind.Unspecified), 1008042, null, 2m, 1 },
+                    { 4, "Pooping! Good Movie!", new DateTime(2023, 10, 19, 16, 0, 1, 0, DateTimeKind.Unspecified), 1151534, null, 3m, 1 }
                 });
 
             migrationBuilder.CreateIndex(
