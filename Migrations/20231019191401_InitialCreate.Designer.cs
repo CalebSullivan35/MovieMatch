@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MovieMatch.Migrations
 {
     [DbContext(typeof(MovieMatchDbContext))]
-    [Migration("20231018153241_InitialCreate")]
+    [Migration("20231019191401_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace MovieMatch.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "2b420514-0eb5-481e-8776-b430d37cf9a0",
+                            ConcurrencyStamp = "ca4c1ba1-2cc2-4850-b565-1cae0245fd04",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -152,13 +152,13 @@ namespace MovieMatch.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0e79edf9-0060-49a5-8c6b-3019dee09e0c",
+                            ConcurrencyStamp = "96d51313-852d-4fd0-ad85-8b5d040e9a69",
                             Email = "admina@strator.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEI6w9kCJwhls8d4XABRIpiUNGYqMfsloDoVYSDVaOINtAkUszo3mipvunGdiq97dUQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEM0gBBG8/OVXe6acQ6FyxbSgRQahOc+RrYWbo7fASEfUGysWYM2rWO69Uf99vG/zTQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "19d78e99-cc89-4cef-8322-6ee8feaebb19",
+                            SecurityStamp = "b6306d1a-39e6-40e7-987c-b935b4a5a5f9",
                             TwoFactorEnabled = false,
                             UserName = "Administrator"
                         });
@@ -330,7 +330,10 @@ namespace MovieMatch.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("text");
 
-                    b.Property<int>("MovideId")
+                    b.Property<DateTime>("DateAdded")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int>("MatchingMovieInteger")
                         .HasColumnType("integer");
 
                     b.Property<int?>("MovieId")
@@ -355,7 +358,8 @@ namespace MovieMatch.Migrations
                         {
                             Id = 1,
                             Content = "Really Good Movie!",
-                            MovideId = 926393,
+                            DateAdded = new DateTime(2023, 10, 19, 12, 0, 1, 0, DateTimeKind.Unspecified),
+                            MatchingMovieInteger = 926393,
                             Rating = 4m,
                             UserProfileId = 1
                         },
@@ -363,7 +367,8 @@ namespace MovieMatch.Migrations
                         {
                             Id = 2,
                             Content = "Trash Movie!",
-                            MovideId = 968051,
+                            DateAdded = new DateTime(2023, 10, 19, 14, 0, 1, 0, DateTimeKind.Unspecified),
+                            MatchingMovieInteger = 968051,
                             Rating = 1m,
                             UserProfileId = 1
                         },
@@ -371,7 +376,8 @@ namespace MovieMatch.Migrations
                         {
                             Id = 3,
                             Content = "Amazing! Good Movie!",
-                            MovideId = 1008042,
+                            DateAdded = new DateTime(2023, 10, 19, 16, 0, 1, 0, DateTimeKind.Unspecified),
+                            MatchingMovieInteger = 1008042,
                             Rating = 2m,
                             UserProfileId = 1
                         },
@@ -379,7 +385,8 @@ namespace MovieMatch.Migrations
                         {
                             Id = 4,
                             Content = "Pooping! Good Movie!",
-                            MovideId = 1151534,
+                            DateAdded = new DateTime(2023, 10, 19, 16, 0, 1, 0, DateTimeKind.Unspecified),
+                            MatchingMovieInteger = 1151534,
                             Rating = 3m,
                             UserProfileId = 1
                         });

@@ -63,19 +63,17 @@ export const MovieCard = ({ movie, loggedInUser }) => {
  };
 
  return (
-  <div className="card lg:card-side lg:h-2/6 bg-base-300 shadow-xl w-7/12">
-   <figure className="h-full w-3/6">
+  <div className="flex bg-base-300 shadow-xl w-7/12 lg:h-96 rounded-lg">
+   <figure className="w-1/6">
     <img
-     className="h-auto"
+     className="h-full w-full"
      src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
      alt="Album"
     />
    </figure>
-   <div className="px-2 mt-5 mb-5 h-auto">
+   <div className="px-2 mt-5 ml-5 w-5/6">
     <h2 className="card-title"></h2>
     <h1 className="text-4xl text-center">{movie.title}</h1>
-    {/* content diff */}
-
     <p>{movie.overview}</p>
     <p>{movie.release_date}</p>
     <p>Movie Length: {movie.runtime} minutes</p>
@@ -85,7 +83,7 @@ export const MovieCard = ({ movie, loggedInUser }) => {
       return <span className="px-1">{g.name} </span>;
      })}
     </div>
-    <div>{handleButtonToShow()}</div>
+    <div className="float-right">{handleButtonToShow()}</div>
    </div>
   </div>
  );

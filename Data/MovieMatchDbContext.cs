@@ -55,30 +55,34 @@ public class MovieMatchDbContext : IdentityDbContext<IdentityUser>
         {
           Id =1,
           UserProfileId =1,
-          MovideId = 926393,
+          MatchingMovieInteger = 926393,
           Rating = 4,
-          Content = "Really Good Movie!"
+          Content = "Really Good Movie!",
+          DateAdded = new DateTime(2023,10,19,12,0,1)
         },
        new Review {
           Id =2,
           UserProfileId =1,
-          MovideId = 968051,
+          MatchingMovieInteger = 968051,
           Rating = 1,
-          Content = "Trash Movie!"
+          Content = "Trash Movie!",
+           DateAdded = new DateTime(2023,10,19,14,0,1)
         },
        new Review {
           Id =3,
           UserProfileId =1,
-          MovideId = 1008042,
+          MatchingMovieInteger = 1008042,
           Rating = 2,
-          Content = "Amazing! Good Movie!"
+          Content = "Amazing! Good Movie!",
+          DateAdded = new DateTime(2023,10,19,16,0,1)
         },
        new Review {
           Id =4,
           UserProfileId =1,
-          MovideId = 1151534,
+          MatchingMovieInteger = 1151534,
           Rating = 3,
-          Content = "Pooping! Good Movie!"
+          Content = "Pooping! Good Movie!",
+          DateAdded = new DateTime(2023,10,19,16,0,1)
         },
     });
 
