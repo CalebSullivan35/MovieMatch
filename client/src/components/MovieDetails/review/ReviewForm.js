@@ -3,7 +3,12 @@ import { postNewReview } from "../../../managers/reviewManager";
 
 export const ReviewForm = ({ loggedInUser, movie, getData }) => {
  const [newReviewContent, setNewReviewContent] = useState("");
- const [newRating, setnewRating] = useState(0);
+ const [newRating, setNewRating] = useState(0);
+
+ const resetState = () => {
+  setNewReviewContent("");
+  setNewRating(0);
+ };
 
  const handleSubmit = () => {
   const newReview = {
@@ -14,14 +19,16 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
   };
 
   postNewReview(newReview).then(() => {
-   getData();
+   getData().then(resetState());
   });
  };
 
  const handleRatingChange = (e) => {
-  setnewRating(parseFloat(e.target.value));
+  setNewRating(parseFloat(e.target.value));
  };
-
+ if (newRating == null) {
+  return "";
+ }
  return (
   <>
    <button
@@ -129,6 +136,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
       <textarea
        className="textarea textarea-bordered h-24"
        placeholder="Type Here..."
+       value={newReviewContent}
        onChange={(e) => {
         setNewReviewContent(e.target.value);
        }}
@@ -145,7 +153,14 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
        >
         Submit
        </button>
-       <button className="btn btn-error">Cancel</button>
+       <button
+        className="btn btn-error"
+        onClick={() => {
+         resetState();
+        }}
+       >
+        Cancel
+       </button>
       </form>
      </div>
     </div>

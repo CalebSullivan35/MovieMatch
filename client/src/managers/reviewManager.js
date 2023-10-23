@@ -23,3 +23,17 @@ export const deleteReview = (id) => {
   method: "Delete",
  });
 };
+
+export const getReviewById = (id) => {
+ return fetch(`${_apiUrl}/${id}`).then((res) => res.json());
+};
+
+export const updateReview = (review) => {
+ return fetch(`${_apiUrl}/${review.Id}`, {
+  method: "PUT",
+  headers: {
+   "Content-Type": "application/json",
+  },
+  body: JSON.stringify(review),
+ });
+};
