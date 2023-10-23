@@ -26,14 +26,14 @@ public class ReviewController : ControllerBase
   {
     return Ok(_dbContext.Reviews);
   }
-
+  //get all reviews for a movie. 
   [HttpGet("{id}/movie")]
   [Authorize]
   public async Task<IActionResult> GetReviewsBasedOnMovie(int id)
   {
     var results = _dbContext.Reviews
     .Include(r => r.UserProfile)
-    .Where((r) => r.MatchingMovieInteger == id).ToList();
+    .Where((r) => r.MatchingMovieInteger == id).OrderBy(r => r.DateAdded).ToList();
     if (results == null)
     {
       return NotFound();
@@ -62,7 +62,7 @@ public class ReviewController : ControllerBase
   }
     return Ok(results);
   }
-
+  //post a relationship
   [HttpPost]
   [Authorize]
   public IActionResult createNewReview(Review newReview)
@@ -86,5 +86,37 @@ public class ReviewController : ControllerBase
     _dbContext.Reviews.Remove(reviewToDelete);
     _dbContext.SaveChanges();
     return NoContent();
+  }
+  //get a review based on review id
+  [HttpGet("{id}")]
+  [Authorize]
+  public IActionResult getReview(int id)
+  {
+
+    Review reviewToReturn = _dbContext.Reviews.SingleOrDefault(r => r.Id == id);
+    if (reviewToReturn == null){
+      return NotFound();
+    }
+    return Ok(reviewToReturn);
+  }
+
+  //do a put next. 
+  [HttpPut("{id}")]
+  [Authorize]
+  public IActionResult updateReview(Review updatedReview, int id)
+  {
+    Review reviewToUpdate = _dbContext.Reviews.SingleOrDefault(r => r.Id == id);
+    if (reviewToUpdate == null)
+    {
+      return NotFound();
+    }
+    //update the properties that we want to change. 
+    reviewToUpdate.Content = updatedReview.Content;
+    reviewToUpdate.Rating = updatedReview.Rating;
+    _dbContext.SaveChanges();
+    return NoContent();
+
+
+
   }
 }

@@ -3,6 +3,7 @@ import {
  getReviewsByMovieId,
 } from "../../managers/reviewManager";
 import { useEffect, useState } from "react";
+import { EditReviewForm } from "./review/EditReviewForm";
 
 export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
  const handleDeleteButton = (id) => {
@@ -87,14 +88,17 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
        <p>{r.dateAdded.split("T")[0]}</p>
       </div>
       {loggedInUser.id === r.userProfileId ? (
-       <button
-        className="btn btn-warning"
-        onClick={() => {
-         handleDeleteButton(r.id);
-        }}
-       >
-        Delete
-       </button>
+       <>
+        <button
+         className="btn btn-warning"
+         onClick={() => {
+          handleDeleteButton(r.id);
+         }}
+        >
+         Delete
+        </button>
+        <EditReviewForm review={r} getData={getData} />
+       </>
       ) : (
        ""
       )}

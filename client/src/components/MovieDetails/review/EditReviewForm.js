@@ -1,136 +1,154 @@
 import { useEffect, useState } from "react";
-import { postNewReview } from "../../../managers/reviewManager";
+import { updateReview } from "../../../managers/reviewManager";
 
-export const ReviewForm = ({ loggedInUser, movie, getData }) => {
- const [newReviewContent, setNewReviewContent] = useState("");
- const [newRating, setnewRating] = useState(0);
+export const EditReviewForm = ({ review, getData }) => {
+ const [updatedReviewContent, setUpdatedReviewContent] = useState("");
+ const [updatedRating, setUpdatedRating] = useState(0);
 
- const handleSubmit = () => {
-  const newReview = {
-   UserProfileId: loggedInUser.id,
-   MatchingMovieInteger: movie.id,
-   rating: newRating,
-   content: newReviewContent,
-  };
+ //we first need to get and store the review we are seletecting.
 
-  postNewReview(newReview).then(() => {
-   getData();
-  });
+ const setData = () => {
+  document.getElementById(`my_modal_Edit_${review.id}`).showModal();
+  setUpdatedRating(parseFloat(review.rating));
+  setUpdatedReviewContent(review.content);
+ };
+
+ const resetState = () => {
+  setUpdatedReviewContent("");
+  setUpdatedRating(0);
  };
 
  const handleRatingChange = (e) => {
-  setnewRating(parseFloat(e.target.value));
+  setUpdatedRating(parseFloat(e.target.value));
  };
 
+ const handleSubmitButton = () => {
+  const updatedReview = {
+   Id: review.id,
+   UserProfileId: review.UserProfileId,
+   MatchingMovieInteger: review.MatchingMovieInteger,
+   Rating: updatedRating,
+   Content: updatedReviewContent,
+   DateAdded: review.DateAdded,
+  };
+
+  updateReview(updatedReview).then(() => {
+   getData().then(() => {
+    resetState();
+   });
+  });
+ };
+
+ if (review == null) {
+  return "";
+ }
  return (
   <>
-   <button
-    className="btn btn-primary mt-10"
-    onClick={() => document.getElementById("my_modal_1").showModal()}
-   >
-    Leave A Review
+   <button className="btn btn-primary mt-10" onClick={() => setData()}>
+    Edit Review
    </button>
-   <dialog id="my_modal_1" className="modal">
+   <dialog id={`my_modal_Edit_${review.id}`} className="modal">
     <div className="modal-box">
-     <h3 className="font-bold text-lg mb-2">New Review!</h3>
+     <h3 className="font-bold text-lg mb-2">Edit Review!</h3>
      <div className="form-control">
       <div>
        <div className="rating rating-lg rating-half">
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className="rating-hidden"
          value={0}
          onChange={handleRatingChange}
-         checked={newRating === 0}
+         checked={updatedRating === 0}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-1"
          value={0.5}
          onChange={handleRatingChange}
-         checked={newRating === 0.5}
+         checked={updatedRating === 0.5}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-2"
          value={1}
          onChange={handleRatingChange}
-         checked={newRating === 1}
+         checked={updatedRating === 1}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-1"
          value={1.5}
          onChange={handleRatingChange}
-         checked={newRating === 1.5}
+         checked={updatedRating === 1.5}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-2"
          onChange={handleRatingChange}
          value={2}
-         checked={newRating === 2}
+         checked={updatedRating === 2}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-1"
          onChange={handleRatingChange}
          value={2.5}
-         checked={newRating === 2.5}
+         checked={updatedRating === 2.5}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-2"
          onChange={handleRatingChange}
          value={3}
-         checked={newRating === 3}
+         checked={updatedRating === 3}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-1"
          onChange={handleRatingChange}
          value={3.5}
-         checked={newRating === 3.5}
+         checked={updatedRating === 3.5}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-2"
          onChange={handleRatingChange}
          value={4}
-         checked={newRating === 4}
+         checked={updatedRating === 4}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-1 "
          onChange={handleRatingChange}
          value={4.5}
-         checked={newRating === 4.5}
+         checked={updatedRating === 4.5}
         />
         <input
          type="radio"
-         name="rating-10"
+         name={`EditRating/${review.id}`}
          className=" mask mask-star-2 mask-half-2"
          onChange={handleRatingChange}
          value={5}
-         checked={newRating === 5}
+         checked={updatedRating === 5}
         />
        </div>
       </div>
       <textarea
        className="textarea textarea-bordered h-24"
        placeholder="Type Here..."
+       value={updatedReviewContent}
        onChange={(e) => {
-        setNewReviewContent(e.target.value);
+        setUpdatedReviewContent(e.target.value);
        }}
       ></textarea>
       <label className="label"></label>
@@ -140,12 +158,19 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
        <button
         className="btn btn-primary mr-2"
         onClick={() => {
-         handleSubmit();
+         handleSubmitButton();
         }}
        >
         Submit
        </button>
-       <button className="btn btn-error">Cancel</button>
+       <button
+        className="btn btn-error"
+        onClick={() => {
+         resetState();
+        }}
+       >
+        Cancel
+       </button>
       </form>
      </div>
     </div>
