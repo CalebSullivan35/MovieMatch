@@ -68,7 +68,7 @@ export const FavoritesList = ({ loggedInUser }) => {
  return (
   <div className="h-screen">
    <h1>Favorites: </h1>
-   <div className="flex w-11/12 justify-end">
+   <div className="flex w-11/12 justify-end ">
     <select
      className="select w-full max-w-xs select-accent"
      onChange={(e) => {
@@ -84,13 +84,13 @@ export const FavoritesList = ({ loggedInUser }) => {
      })}
     </select>
    </div>
-   <div className="flex flex-row p-5 m-5">
+   <div className="grid grid-cols-4">
     {moviesToDisplay.map((f) => {
      return (
-      <div className=" relative">
+      <div className="relative">
        <img
         className="p-5"
-        src={`http://image.tmdb.org/t/p/w185/${f.movie.posterPath}`}
+        src={`http://image.tmdb.org/t/p/w500/${f.movie.posterPath}`}
         onClick={() => {
          navigate(`/movie/${f.movie.id}`);
         }}

@@ -28,6 +28,9 @@ export const getReviewById = (id) => {
  return fetch(`${_apiUrl}/${id}`).then((res) => res.json());
 };
 
+export const getReviewByUserId = (userid) => {
+ return fetch(`${_apiUrl}/${userid}/user`).then((res) => res.json());
+};
 export const updateReview = (review) => {
  return fetch(`${_apiUrl}/${review.Id}`, {
   method: "PUT",

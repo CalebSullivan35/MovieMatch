@@ -13,11 +13,6 @@ export const EditReviewForm = ({ review, getData }) => {
   setUpdatedReviewContent(review.content);
  };
 
- const resetState = () => {
-  setUpdatedReviewContent("");
-  setUpdatedRating(0);
- };
-
  const handleRatingChange = (e) => {
   setUpdatedRating(parseFloat(e.target.value));
  };
@@ -33,9 +28,8 @@ export const EditReviewForm = ({ review, getData }) => {
   };
 
   updateReview(updatedReview).then(() => {
-   getData().then(() => {
-    resetState();
-   });
+   console.log("Before getData");
+   getData();
   });
  };
 
@@ -163,14 +157,7 @@ export const EditReviewForm = ({ review, getData }) => {
        >
         Submit
        </button>
-       <button
-        className="btn btn-error"
-        onClick={() => {
-         resetState();
-        }}
-       >
-        Cancel
-       </button>
+       <button className="btn btn-error">Cancel</button>
       </form>
      </div>
     </div>
