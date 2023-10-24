@@ -57,7 +57,7 @@ public class MovieController : ControllerBase
     [Authorize]
     public async Task<IActionResult> SearchMovies(string query)
     {
-    var searchResults = await _movieApi.SearchMoviesAsync(query);
+    var searchResults = await _movieApi.SearchMoviesAsync(query, "en");
     return Ok(searchResults);
     }   
 

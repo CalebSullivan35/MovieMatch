@@ -16,3 +16,8 @@ export const getLatestReleasedMovies = () => {
 export const getMovieDetail = (id) => {
  return fetch(`${_apiUrl}/${id}`).then((res) => res.json());
 };
+
+//fetch based on string query
+export const searchMovie = (query) => {
+ return fetch(`${_apiUrl}/search?query=${query}`).then((res) => res.json());
+};

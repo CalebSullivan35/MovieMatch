@@ -115,8 +115,41 @@ public class ReviewController : ControllerBase
     reviewToUpdate.Rating = updatedReview.Rating;
     _dbContext.SaveChanges();
     return NoContent();
+  }
 
+  [HttpGet("{userId}/user")]
+  [Authorize]
+  public async Task<IActionResult> GetReviewsBasedOnUser(int userId)
+  {
+    var results = _dbContext.Reviews
+    .Include(r => r.UserProfile)
+    .Where((r) => r.UserProfileId == userId).OrderBy(r => r.DateAdded).ToList();
+    if (results == null)
+    {
+      return NotFound();
+    }
 
-
+  foreach(Review result in results)
+  {
+    var apiMovie = await _movieApi.GetDetailsAsync(result.MatchingMovieInteger);
+    
+     Movie foundMovie = new Movie()
+      {
+        Id = apiMovie.Id,
+        Title = apiMovie.Title,
+        Overview = apiMovie.Overview,
+        ReleaseDate = apiMovie.Release_date,
+        PosterPath = apiMovie.Poster_path.ToString(),
+        OriginalLanguage = apiMovie.Original_language,
+        VoteAverage = apiMovie.Vote_average,
+        Popularity = apiMovie.Popularity,
+        RunTime = apiMovie.Runtime,
+        Revenue = apiMovie.Revenue,
+        Tagline = apiMovie.Tagline,
+        Budget = apiMovie.Budget,     
+      };
+      result.Movie = foundMovie;
+  }
+    return Ok(results);
   }
 }
