@@ -55,9 +55,9 @@ public class MovieController : ControllerBase
      
     [HttpGet("search")]
     [Authorize]
-    public async Task<IActionResult> SearchMovies(string query)
+    public async Task<IActionResult> SearchMovies(string query, int page)
     {
-    var searchResults = await _movieApi.SearchMoviesAsync(query, "en");
+    var searchResults = await _movieApi.SearchMoviesAsync(query,language: "en", page, include_adult: false, region: "US");
     return Ok(searchResults);
     }   
 
@@ -69,4 +69,20 @@ public class MovieController : ControllerBase
       return Ok(movie);
     }
 
+    //get the videos
+    [HttpGet("{id}/videos")]
+    [Authorize]
+    public async Task<IActionResult> getMovieVideos(int id)
+    {
+    var videos = await _movieApi.GetVideosAsync(id);
+    return Ok(videos);
+    }
+    //get credit information
+    [HttpGet("{id}/credits")]
+    [Authorize]
+    public async Task<IActionResult> getMovieCredit(int id)
+    {
+    var credits = await _movieApi.GetCreditsAsync( id);
+    return Ok(credits);
+    }
 }

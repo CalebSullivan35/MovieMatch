@@ -18,6 +18,18 @@ export const getMovieDetail = (id) => {
 };
 
 //fetch based on string query
-export const searchMovie = (query) => {
- return fetch(`${_apiUrl}/search?query=${query}`).then((res) => res.json());
+export const searchMovie = (query, page) => {
+ return fetch(`${_apiUrl}/search?query=${query}&page=${page}`).then((res) =>
+  res.json()
+ );
+};
+
+//get movie videos
+export const getMovieVideos = (movieId) => {
+ return fetch(`${_apiUrl}/${movieId}/videos`).then((res) => res.json());
+};
+
+//get movie credits
+export const getMovieCredits = (movieId) => {
+ return fetch(`${_apiUrl}/${movieId}/credits`).then((res) => res.json());
 };
