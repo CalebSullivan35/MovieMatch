@@ -38,7 +38,7 @@ export const EditReviewForm = ({ review, getData }) => {
  }
  return (
   <>
-   <button className="btn btn-primary mt-10" onClick={() => setData()}>
+   <button className="btn btn-primary" onClick={() => setData()}>
     Edit Review
    </button>
    <dialog id={`my_modal_Edit_${review.id}`} className="modal">

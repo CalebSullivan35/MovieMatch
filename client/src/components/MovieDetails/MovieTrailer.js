@@ -38,7 +38,7 @@ export const MovieTrailer = ({ movie }) => {
  }
 
  return (
-  <div className="px-2 mt-5 w-full h-96 md:w-2/3 lg:w-3/5 xl:w-2/3 2xl:w-1/3">
+  <div className="px-2 mt-5 w-full aspect-video md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
    <iframe
     className="w-full h-full"
     src={`https://www.youtube.com/embed/${youtubeVideo.key}`}

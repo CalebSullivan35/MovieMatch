@@ -13,13 +13,13 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
  };
 
  return (
-  <div className="w-7/12 mt-12">
+  <div className="mt-12 mx-4 w-full sm:w-7/12">
    <h1 className="text-center text-2xl mb-5">Reviews</h1>
    <div className="h-76">
     {reviews.map((r) => (
-     <div className="textarea textarea-bordered w-full text-lg">
-      <div className="flex flex-row justify-between">
-       <div>
+     <div className="textarea textarea-bordered w-full text-lg flex flex-col my-4">
+      <div className="flex flex-col justify-between">
+       <div className="flex justify-between">
         <div className="rating rating-md rating-half">
          <input
           type="radio"
@@ -77,28 +77,28 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
           checked={r.rating === 5}
          />
         </div>
+        <h3>
+         {r?.userProfile?.firstName} {r?.userProfile?.lastName}
+        </h3>
        </div>
-       <h3>
-        {r?.userProfile?.firstName} {r?.userProfile?.lastName}
-       </h3>
+       <p className="flex justify-end">{r.dateAdded.split("T")[0]}</p>
       </div>
 
       <div className="flex justify-between">
-       <p>{r.content}</p>
-       <p>{r.dateAdded.split("T")[0]}</p>
+       <p className="w-full">{r.content}</p>
       </div>
       {loggedInUser.id === r.userProfileId ? (
-       <>
+       <div className="flex flex-row justify-center sm:justify-end mt-5">
+        <EditReviewForm review={r} getData={getData} />
         <button
-         className="btn btn-warning"
+         className="btn btn-secondary mx-2"
          onClick={() => {
           handleDeleteButton(r.id);
          }}
         >
          Delete
         </button>
-        <EditReviewForm review={r} getData={getData} />
-       </>
+       </div>
       ) : (
        ""
       )}

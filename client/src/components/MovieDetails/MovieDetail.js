@@ -25,7 +25,7 @@ export const MovieDetail = ({ loggedInUser }) => {
  }
 
  return (
-  <div className="flex flex-col items-center">
+  <div className="flex flex-col items-center mt-10">
    <MovieCard movie={movie} loggedInUser={loggedInUser} />
    <MovieTrailer movie={movie} />
    <ReviewForm movie={movie} loggedInUser={loggedInUser} getData={getData} />

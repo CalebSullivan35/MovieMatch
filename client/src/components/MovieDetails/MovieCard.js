@@ -64,7 +64,7 @@ export const MovieCard = ({ movie, loggedInUser }) => {
  };
 
  return (
-  <div className="mt-5 shadow-xl w-full rounded-lg md:flex md:flex-row md:w-9/12 2xl:w-7/12">
+  <div className="mt-5 shadow-xl w-full rounded-lg sm:flex sm:flex-row md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
    <div className="md:w-1/3 ">
     <img
      src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
@@ -72,36 +72,35 @@ export const MovieCard = ({ movie, loggedInUser }) => {
      className="w-full h-96 md:h-full md:w-full"
     />
    </div>
-   <div className=" flex items-center px-2 mt-5 ml-5 w-full md:w-2/3 flex-col relative">
+   <div className=" flex items-center px-2 mt-5 w-full md:w-2/3 flex-col relative">
     <h1 className="text-4xl text-center font-bold">{movie.title}</h1>
     <h2 className="text-xl text-center italic mb-5">{movie.tagline}</h2>
     <p className="mb-5">{movie.overview}</p>
-    <div className="collapse collapse-arrow bg-base-200 2xl:w-2/3">
-     <input type="checkbox" />
-     <div className="collapse-title text-xl font-medium text-center">
-      Details
-     </div>
-     <div className="collapse-content">
-      <p>
-       <span className="text-xl">Rating:</span>{" "}
-       {movie.vote_average.toString().slice(0, 3)}/10
-      </p>
-      <p>
-       <span className="text-xl">Released:</span> {movie.release_date}
-      </p>
-      <p>
-       <span className="text-xl">Movie Length:</span> {movie.runtime} minutes
-      </p>
-      <div className="flex items-baseline">
-       <h2 className="text-xl">Genres: </h2>
-       {movie.genres.map((g) => {
-        return <span className="px-1">{g.name} </span>;
-       })}
+    <div className="h-full w-full flex flex-col items-center justify-between">
+     <div className="collapse collapse-arrow bg-base-200 2xl:w-2/3">
+      <input type="checkbox" />
+      <div className="collapse-title text-xl font-medium text-center">
+       Details
+      </div>
+      <div className="collapse-content">
+       <p>
+        <span className="text-xl">Rating:</span>
+        {movie.vote_average.toString().slice(0, 3)}/10
+       </p>
+       <p>
+        <span className="text-xl">Released:</span> {movie.release_date}
+       </p>
+       <p>
+        <span className="text-xl">Movie Length:</span> {movie.runtime} minutes
+       </p>
+       <div className="flex items-baseline">
+        <h2 className="text-xl">Genres: </h2>
+        {movie.genres.map((g) => {
+         return <span className="px-1">{g.name} </span>;
+        })}
+       </div>
       </div>
      </div>
-    </div>
-    <div className="w-full absolute bottom-5">
-     <h1 className="text-center text-2xl">Cast</h1>
      <ActorsList movie={movie} />
      <div className="flex justify-center m-5">{handleButtonToShow()}</div>
     </div>
