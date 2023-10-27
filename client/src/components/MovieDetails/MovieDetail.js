@@ -5,6 +5,7 @@ import { MovieCard } from "./MovieCard";
 import { MovieReviews } from "./MovieReviews";
 import { ReviewForm } from "./review/ReviewForm";
 import { getReviewsByMovieId } from "../../managers/reviewManager";
+import { MovieTrailer } from "./MovieTrailer";
 
 export const MovieDetail = ({ loggedInUser }) => {
  const [movie, setMovie] = useState();
@@ -24,11 +25,9 @@ export const MovieDetail = ({ loggedInUser }) => {
  }
 
  return (
-  <div
-   className="w-screen h-screen flex 
-  flex-col items-center"
-  >
+  <div className="flex flex-col items-center">
    <MovieCard movie={movie} loggedInUser={loggedInUser} />
+   <MovieTrailer movie={movie} />
    <ReviewForm movie={movie} loggedInUser={loggedInUser} getData={getData} />
    <MovieReviews
     reviews={reviews}

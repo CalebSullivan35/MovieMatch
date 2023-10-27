@@ -6,6 +6,7 @@ import {
  searchMovie,
 } from "../../managers/moveManager";
 import { useNavigate } from "react-router-dom";
+import { MovieCarousel } from "./MovieCarousel";
 
 export const HomeList = () => {
  //store all the movies in state.
@@ -25,6 +26,19 @@ export const HomeList = () => {
   getData();
  }, []);
 
+ async function getFivePages() {
+  const allMovies = [];
+
+  for (let page = 1; page <= 3; page++) {
+   const pageData = await searchMovie(searchTerms, page);
+   if (pageData.results && Array.isArray(pageData.results)) {
+    allMovies.push(...pageData.results);
+   }
+  }
+
+  return allMovies;
+ }
+
  const handleSearch = async (e) => {
   setSearchTerms(e.target.value);
   if (searchTerms === "") {
@@ -32,7 +46,7 @@ export const HomeList = () => {
   }
   try {
    // Perform the search using the searchMovie function
-   const results = await searchMovie(searchTerms);
+   const results = await getFivePages();
 
    // Update the state with the search results
    setSearchResults(results);
@@ -62,58 +76,37 @@ export const HomeList = () => {
 
     {searchTerms != "" ? (
      <div className="flex mb-5 w-11/12 flex-wrap mt-10">
-      {searchResults?.results?.map((sr) => (
-       <img
-        className="p-1 rounded-xl w-2/12"
-        key={sr.id}
-        src={`http://image.tmdb.org/t/p/w500/${sr.poster_path}`}
-        alt="missing"
-        onClick={() => {
-         navigate(`movie/${sr.id}`);
-        }}
-       />
-      ))}
+      {searchResults?.map((sr) =>
+       sr.original_language === "en" && sr.poster_path !== null ? (
+        <img
+         className="p-1 rounded-xl w-2/12"
+         key={sr.id}
+         src={`http://image.tmdb.org/t/p/w500/${sr.poster_path}`}
+         alt="missing"
+         onClick={() => {
+          navigate(`movie/${sr.id}`);
+         }}
+        />
+       ) : (
+        ""
+       )
+      )}
      </div>
     ) : (
      <>
-      <div className="flex justify-start w-11/12">
-       <h1 className="text-4xl mb-5">Latest Releases</h1>
+      <div className="flex justify-start w-11/12 flex-col mt-5">
+       <h1 className="text-4xl ">Latest Releases</h1>
+       <MovieCarousel movieList={latestReleasedMovies?.results} />
       </div>
-      <div className="flex mb-5 w-11/12 overflow-x-auto">
-       {latestReleasedMovies.results?.map((pm) => (
-        <img
-         src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
-         onClick={() => {
-          navigate(`movie/${pm.id}`);
-         }}
-        />
-       ))}
+
+      <div className="flex justify-start w-11/12 flex-col mt-10">
+       <h1 className="text-4xl ">Trending </h1>
+       <MovieCarousel movieList={popularMovies?.results} />
       </div>
-      <div className="flex justify-start w-11/12">
-       <h1 className="text-4xl mb-5">Trending </h1>
-      </div>
-      <div className="flex mb-5 w-11/12 overflow-x-auto">
-       {popularMovies.results?.map((pm) => (
-        <img
-         src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
-         onClick={() => {
-          navigate(`movie/${pm.id}`);
-         }}
-        />
-       ))}
-      </div>
-      <div className="flex justify-start w-11/12">
-       <h1 className="text-4xl mb-5">All Time Top Rated</h1>
-      </div>
-      <div className="flex mb-5 w-11/12 overflow-x-auto">
-       {topRatedMovies.results?.map((pm) => (
-        <img
-         src={`http://image.tmdb.org/t/p/w185/${pm.poster_path}`}
-         onClick={() => {
-          navigate(`movie/${pm.id}`);
-         }}
-        />
-       ))}
+
+      <div className="flex justify-start w-11/12 flex-col mt-10">
+       <h1 className="text-4xl">All Time Top Rated</h1>
+       <MovieCarousel movieList={topRatedMovies?.results} />
       </div>
      </>
     )}
