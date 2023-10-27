@@ -67,10 +67,15 @@ export const FavoritesList = ({ loggedInUser }) => {
 
  return (
   <div className="h-screen">
-   <h1>Favorites: </h1>
-   <div className="flex w-11/12 justify-end ">
+   <h1 className="text-center mb-10 text-2xl sm:text-3xl md:text-4xl xl:text-6xl font-bold">
+    Favorites List
+   </h1>
+   <div className="flex flex-col  items-center text-xl sm:text-xl md:text-xl xl:text-2xl">
+    <label for="years" class="mb-6 font-medium">
+     Sort By Genre
+    </label>
     <select
-     className="select w-full max-w-xs select-accent"
+     className="w-fit select select-accent text-xl sm:text-xl md:text-2xl xl:text-4xl"
      onChange={(e) => {
       handleDropDownChanges(e);
      }}
@@ -78,25 +83,25 @@ export const FavoritesList = ({ loggedInUser }) => {
      <option disabled selected>
       Select Genre
      </option>
-     <option value="None">Do Not Filter By Genere</option>
+     <option value="None">Do Not Filter By Genre</option>
      {genres.map((g) => {
       return <option value={g}>{g}</option>;
      })}
     </select>
    </div>
-   <div className="grid grid-cols-4">
+   <div className="grid grid-cols-2 md:grid-cols-3 md:mx-10 xl:grid-cols-4 2xl:grid-cols-5">
     {moviesToDisplay.map((f) => {
      return (
-      <div className="relative">
+      <div className="relative p-5">
        <img
-        className="p-5"
+        className="rounded-2xl"
         src={`http://image.tmdb.org/t/p/w500/${f.movie.posterPath}`}
         onClick={() => {
          navigate(`/movie/${f.movie.id}`);
         }}
        ></img>
        <button
-        className="btn-circle btn-warning btn absolute bottom-0 left-0"
+        className="btn-circle btn-error btn absolute bottom-0 left-0"
         onClick={() => {
          handleDeleteButton(f.id);
         }}

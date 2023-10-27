@@ -36,7 +36,7 @@ export const ActorsList = ({ movie }) => {
  };
 
  return (
-  <div className="w-full flex flex-col mt-5">
+  <div className="w-full flex flex-col mt-auto">
    <div className="flex flex-row justify-end mr-5">
     <button onClick={() => scrollCarousel("left")} className="mr-3">
      Left
