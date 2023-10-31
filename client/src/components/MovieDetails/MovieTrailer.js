@@ -26,14 +26,16 @@ export const MovieTrailer = ({ movie }) => {
 
  if (!youtubeVideo) {
   return (
-   <iframe
-    className="mt-5"
-    src={`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1`}
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-   ></iframe>
+   <div className="px-2 mt-5 w-full aspect-video md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
+    <iframe
+     className=" w-full h-full"
+     src={`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1`}
+     title="YouTube video player"
+     frameborder="0"
+     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+     allowfullscreen
+    ></iframe>
+   </div>
   );
  }
 
