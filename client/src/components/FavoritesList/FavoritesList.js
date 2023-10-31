@@ -101,12 +101,15 @@ export const FavoritesList = ({ loggedInUser }) => {
         }}
        ></img>
        <button
-        className="btn-circle btn-error btn absolute bottom-0 left-0"
+        className="btn-circle btn-error btn-sm sm:btn-md btn absolute bottom-0 left-0"
         onClick={() => {
          handleDeleteButton(f.id);
         }}
        >
-        <GrSubtractCircle className="text-4xl" />
+        <GrSubtractCircle
+         className=" 
+        text-3xl sm:text-4xl"
+        />
        </button>
       </div>
      );

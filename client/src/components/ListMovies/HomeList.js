@@ -35,7 +35,6 @@ export const HomeList = () => {
     allMovies.push(...pageData.results);
    }
   }
-
   return allMovies;
  }
 
@@ -45,16 +44,9 @@ export const HomeList = () => {
    setSearchResults(undefined);
   }
   try {
-   // Perform the search using the searchMovie function
    const results = await getFivePages();
-
-   // Update the state with the search results
    setSearchResults(results);
-
-   // Log the search results
-   console.log(results);
   } catch (error) {
-   // Handle any errors that occur during the search
    console.error("Error:", error);
   }
  };
@@ -65,7 +57,7 @@ export const HomeList = () => {
  return (
   <>
    <div className="flex flex-col  items-center ">
-    <div className="input input-bordered input-accent flex flex-row p-5 items-center w-9/12 sm:w-5/12 text-2xl 2xl:text-4xl 2xl:h-16">
+    <div className="input input-bordered input-primary flex flex-row p-5 items-center w-9/12 sm:w-5/12 text-2xl 2xl:text-3xl 2xl:h-16">
      <svg
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
@@ -111,18 +103,21 @@ export const HomeList = () => {
     ) : (
      <>
       <div className="flex justify-start w-11/12 flex-col mt-5">
-       <h1 className="text-4xl ">Latest Releases</h1>
-       <MovieCarousel movieList={latestReleasedMovies?.results} />
+       <MovieCarousel
+        movieList={latestReleasedMovies?.results}
+        heading={"Latest Releases"}
+       />
       </div>
 
       <div className="flex justify-start w-11/12 flex-col mt-10">
-       <h1 className="text-4xl ">Trending </h1>
-       <MovieCarousel movieList={popularMovies?.results} />
+       <MovieCarousel movieList={popularMovies?.results} heading={"Trending"} />
       </div>
 
       <div className="flex justify-start w-11/12 flex-col mt-10">
-       <h1 className="text-4xl">All Time Top Rated</h1>
-       <MovieCarousel movieList={topRatedMovies?.results} />
+       <MovieCarousel
+        movieList={topRatedMovies?.results}
+        heading={"All Time Top Rated"}
+       />
       </div>
      </>
     )}

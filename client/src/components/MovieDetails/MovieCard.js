@@ -64,10 +64,10 @@ export const MovieCard = ({ movie, loggedInUser }) => {
  };
 
  return (
-  <div className="mt-5 shadow-xl w-full rounded-lg sm:flex sm:flex-row md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
+  <div className="mt-5 shadow-xl w-full rounded-lg md:flex md:flex-row md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
    <div className="md:w-1/3 ">
     <img
-     src={`http://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+     src={`http://image.tmdb.org/t/p/original/${movie.poster_path}`}
      alt="Album"
      className="w-full h-96 md:h-full md:w-full"
     />

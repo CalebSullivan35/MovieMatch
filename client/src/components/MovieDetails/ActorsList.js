@@ -3,6 +3,7 @@ import { getMovieCredits } from "../../managers/moveManager";
 
 export const ActorsList = ({ movie }) => {
  const [credits, setCredits] = useState({});
+
  const carouselRef = useRef(null);
 
  function getCreditData() {
@@ -51,7 +52,7 @@ export const ActorsList = ({ movie }) => {
       c.profile_path && (
        <div className="carousel-item flex flex-col" key={c.id}>
         <img
-         className="w-32 h-32 rounded-full m-2"
+         className="w-32 h-32 m-2 rounded-full"
          src={`https://image.tmdb.org/t/p/w500${c.profile_path}`}
          alt={c.name}
         />

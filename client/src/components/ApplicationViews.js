@@ -24,7 +24,6 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
       </AuthorizedRoute>
      }
     />
-
     <Route
      path="/movie/:id"
      element={
