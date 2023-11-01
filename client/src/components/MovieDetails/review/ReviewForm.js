@@ -32,7 +32,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
  return (
   <>
    <button
-    className="btn btn-primary mt-10"
+    className="text-xl btn btn-secondary"
     onClick={() => document.getElementById("my_modal_1").showModal()}
    >
     Leave A Review
@@ -134,7 +134,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
        </div>
       </div>
       <textarea
-       className="textarea textarea-bordered h-24"
+       className=" textarea textarea-bordered h-24"
        placeholder="Type Here..."
        value={newReviewContent}
        onChange={(e) => {

@@ -66,28 +66,30 @@ export const FavoritesList = ({ loggedInUser }) => {
  }
 
  return (
-  <div className="h-screen">
-   <h1 className="text-center mb-10 text-2xl sm:text-3xl md:text-4xl xl:text-6xl font-bold">
-    Favorites List
-   </h1>
-   <div className="flex flex-col  items-center text-xl sm:text-xl md:text-xl xl:text-2xl">
-    <label for="years" class="mb-6 font-medium">
-     Sort By Genre
-    </label>
-    <select
-     className="w-fit select select-accent text-xl sm:text-xl md:text-2xl xl:text-4xl"
-     onChange={(e) => {
-      handleDropDownChanges(e);
-     }}
-    >
-     <option disabled selected>
-      Select Genre
-     </option>
-     <option value="None">Do Not Filter By Genre</option>
-     {genres.map((g) => {
-      return <option value={g}>{g}</option>;
-     })}
-    </select>
+  <div className="h-screen flex flex-col">
+   <div className="mt-10 flex flex-row w-full md:justify-between justify-center px-20">
+    <h1 class="hidden md:flex md:visible md:text-4xl xl:text-6xl font-bold h-full items-end">
+     Favorites List
+    </h1>
+
+    <div className="flex flex-col items-center text-xl sm:text-xl md:text-xl xl:text-2xl">
+     <select
+      className="
+      select select-accent text-xl sm:text-xl md:text-2xl xl:text-4xl"
+      onChange={(e) => {
+       handleDropDownChanges(e);
+      }}
+     >
+      <option disabled selected>
+       Select Genre
+      </option>
+      <option value="None">Do Not Filter By Genre</option>
+
+      {genres.map((g) => {
+       return <option value={g}>{g}</option>;
+      })}
+     </select>
+    </div>
    </div>
    <div className="grid grid-cols-2 md:grid-cols-3 md:mx-10 xl:grid-cols-4 2xl:grid-cols-5">
     {moviesToDisplay.map((f) => {

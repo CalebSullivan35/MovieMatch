@@ -83,22 +83,27 @@ export const HomeList = () => {
     </div>
 
     {searchTerms != "" ? (
-     <div className="flex mb-5 w-11/12 flex-wrap mt-10">
-      {searchResults?.map((sr) =>
-       sr.original_language === "en" && sr.poster_path !== null ? (
-        <img
-         className="p-1 rounded-xl w-2/12"
-         key={sr.id}
-         src={`http://image.tmdb.org/t/p/w500/${sr.poster_path}`}
-         alt="missing"
-         onClick={() => {
-          navigate(`movie/${sr.id}`);
-         }}
-        />
-       ) : (
-        ""
-       )
-      )}
+     <div className="w-full flex flex-col  items-center">
+      <h1 className="mt-10 text-left text-2xl font-medium xl:text-3xl w-11/12 ">
+       SEARCH RESULTS FOR: {searchTerms}
+      </h1>
+      <div className="grid grid-cols-2 md:grid-cols-3 md:mx-10 xl:grid-cols-4 2xl:grid-cols-5 mb-5 w-11/12 mt-5">
+       {searchResults?.map((sr) =>
+        sr.original_language === "en" && sr.poster_path !== null ? (
+         <img
+          className="rounded-2xl p-2"
+          key={sr.id}
+          src={`http://image.tmdb.org/t/p/w500/${sr.poster_path}`}
+          alt="missing"
+          onClick={() => {
+           navigate(`movie/${sr.id}`);
+          }}
+         />
+        ) : (
+         ""
+        )
+       )}
+      </div>
      </div>
     ) : (
      <>

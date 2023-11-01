@@ -26,8 +26,10 @@ export const MovieCarousel = ({ movieList, heading }) => {
  }
  return (
   <div className="w-full flex flex-col">
-   <div className="flex flex-row justify-between">
-    <h1 className="text-4xl text-primary-focus font-bold">{heading}:</h1>
+   <div className="flex flex-row justify-between border-b mb-4 border-primary pb-2">
+    <h1 className="text-4xl text-primary-focus font-bold mt-auto">
+     {heading}:
+    </h1>
     <div>
      <button
       className="hidden sm:btn sm:btn-sq sm:btn-outline mr-3"

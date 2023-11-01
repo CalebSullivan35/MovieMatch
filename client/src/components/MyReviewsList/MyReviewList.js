@@ -24,7 +24,7 @@ export const MyReviewList = ({ loggedInUser }) => {
  return (
   <>
    {!isLargeScreen ? (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center bg-">
      {myReviews.map((r) => {
       return (
        <div className="flex items-center w-4/6 flex-col border my-2 py-4 rounded-xl">
@@ -116,10 +116,10 @@ export const MyReviewList = ({ loggedInUser }) => {
       {/* head */}
       <thead>
        <tr>
-        <th className="text-center">Movie</th>
-        <th className="text-center">Content</th>
-        <th className="text-center">Rating</th>
-        <th className="text-center">Actions</th>
+        <th className="text-center text-xl">Movie</th>
+        <th className="text-center text-xl">Content</th>
+        <th className="text-center text-xl">Rating</th>
+        <th className="text-center text-xl">Actions</th>
        </tr>
       </thead>
       <tbody>
@@ -128,7 +128,7 @@ export const MyReviewList = ({ loggedInUser }) => {
         return (
          <tr>
           <td>
-           <div className="flex items-center space-x-3">
+           <div className="flex items-center justify-center space-x-3">
             <div className="avatar">
              <div className="mask mask-squircle w-24 h-24">
               <img
@@ -138,7 +138,9 @@ export const MyReviewList = ({ loggedInUser }) => {
              </div>
             </div>
             <div>
-             <div className="font-bold text-2xl">{r.movie.title}</div>
+             <div className="font-bold text-2xl text-center">
+              {r.movie.title}
+             </div>
             </div>
            </div>
           </td>
