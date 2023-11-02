@@ -11,10 +11,17 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
    getData();
   });
  };
-
+ if (reviews.length < 1) {
+  return "";
+ }
  return (
-  <div className="mt-12 mx-4 w-full sm:w-7/12">
-   <h1 className="text-center text-2xl mb-5">Reviews</h1>
+  <div className="mx-4 mb-5 w-11/12 sm:w-8/12 bg-primary-content p-5 rounded-b-2xl">
+   {reviews.length > 0 ? (
+    <h1 className="text-center text-5xl mb-5 underline">REVIEWS</h1>
+   ) : (
+    ""
+   )}
+
    <div className="h-76">
     {reviews.map((r) => (
      <div className="textarea textarea-bordered w-full text-lg flex flex-col my-4">
@@ -77,21 +84,21 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
           checked={r.rating === 5}
          />
         </div>
-        <h3>
+        <h3 className="text-2xl">
          {r?.userProfile?.firstName} {r?.userProfile?.lastName}
         </h3>
        </div>
-       <p className="flex justify-end">{r.dateAdded.split("T")[0]}</p>
+       <p className="flex justify-end text-2xl">{r.dateAdded.split("T")[0]}</p>
       </div>
 
       <div className="flex justify-between">
-       <p className="w-full">{r.content}</p>
+       <p className="w-full ml-3 text-2xl">{r.content}</p>
       </div>
       {loggedInUser.id === r.userProfileId ? (
        <div className="flex flex-row justify-center sm:justify-end mt-5">
         <EditReviewForm review={r} getData={getData} />
         <button
-         className="btn btn-secondary mx-2"
+         className="btn btn-secondary mx-2 text-2xl"
          onClick={() => {
           handleDeleteButton(r.id);
          }}

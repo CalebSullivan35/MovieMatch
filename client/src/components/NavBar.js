@@ -17,14 +17,14 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
  const handleToggle = (e) => {
   if (e.target.checked) {
-   setTheme("light");
+   setTheme("autumn");
   } else {
    setTheme("night");
   }
  };
 
  return (
-  <div className="navbar bg-base-100">
+  <div className="navbar bg-content-focus">
    <div className="navbar-start">
     {loggedInUser ? (
      <div className="dropdown">
@@ -48,14 +48,19 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
        tabIndex={0}
        className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
       >
-       <li>
-        <Link to="/favoritelist">My Favorites</Link>
+       <li className="text-xl">
+        <Link to="/favoritelist" className="text-2xl">
+         My Favorites
+        </Link>
        </li>
        <li>
-        <Link to="/myreviews">My Reviews</Link>
+        <Link to="/myreviews" className="text-2xl">
+         My Reviews
+        </Link>
        </li>
        <li>
         <Link
+         className="text-2xl"
          onClick={(e) => {
           e.preventDefault();
           setOpen(false);
@@ -75,12 +80,12 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     )}
 
     <a
-     className="btn btn-ghost normal-case text-xl"
+     className="btn btn-ghost normal-case text-5xl text-"
      onClick={() => {
       navigate("/");
      }}
     >
-     MovieMatch
+     <span className=" text-primary font mr-0">Movie</span>Match
     </a>
    </div>
 
@@ -89,10 +94,14 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
      {loggedInUser ? (
       <>
        <Link to="/favoritelist">
-        <button className="btn btn-ghost">My Favorites</button>
+        <button className="btn btn-ghost text-xl xl:text-3xl">
+         My Favorites
+        </button>
        </Link>
        <Link to="/myreviews">
-        <button className="btn btn-ghost">My Reviews</button>
+        <button className="btn btn-ghost text-xl xl:text-3xl">
+         My Reviews
+        </button>
        </Link>
       </>
      ) : (
@@ -102,7 +111,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     {loggedInUser ? (
      <>
       <button
-       className="btn btn-ghost mr-5 hidden md:flex"
+       className="btn btn-ghost mr-5 hidden md:flex text-xl xl:text-3xl"
        onClick={(e) => {
         e.preventDefault();
         setOpen(false);
@@ -117,7 +126,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
      </>
     ) : (
      <button
-      className="btn btn-ghost mr-5 hidden md:flex"
+      className="btn btn-ghost mr-5 hidden md:flex text-3xl"
       onClick={() => {
        navigate("/login");
       }}

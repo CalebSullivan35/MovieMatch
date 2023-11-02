@@ -24,7 +24,7 @@ export const MyReviewList = ({ loggedInUser }) => {
  return (
   <>
    {!isLargeScreen ? (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center bg-">
      {myReviews.map((r) => {
       return (
        <div className="flex items-center w-4/6 flex-col border my-2 py-4 rounded-xl">
@@ -34,7 +34,7 @@ export const MyReviewList = ({ loggedInUser }) => {
           alt="Avatar Tailwind CSS Component"
          />
         </div>
-        <h2>{r.movie.title}</h2>
+        <h2 className="text-3xl text-center">{r.movie.title}</h2>
         <div>
          <div className="rating rating-md rating-half">
           <input
@@ -94,11 +94,11 @@ export const MyReviewList = ({ loggedInUser }) => {
           />
          </div>
         </div>
-        <p className="w-4/5 p-2 my-2">{r.content}</p>
+        <p className="w-4/5 p-2 my-2 text-xl">{r.content}</p>
         <div>
          <EditReviewForm review={r} getData={getData} />
          <button
-          className="btn btn-warning mx-2"
+          className="btn btn-warning mx-2 text-xl"
           onClick={() => {
            handleDeleteButton(r.id);
           }}
@@ -116,10 +116,10 @@ export const MyReviewList = ({ loggedInUser }) => {
       {/* head */}
       <thead>
        <tr>
-        <th className="text-center">Movie</th>
-        <th className="text-center">Content</th>
-        <th className="text-center">Rating</th>
-        <th className="text-center">Actions</th>
+        <th className="text-center text-xl">Movie</th>
+        <th className="text-center text-xl">Content</th>
+        <th className="text-center text-xl">Rating</th>
+        <th className="text-center text-xl">Actions</th>
        </tr>
       </thead>
       <tbody>
@@ -128,7 +128,7 @@ export const MyReviewList = ({ loggedInUser }) => {
         return (
          <tr>
           <td>
-           <div className="flex items-center space-x-3">
+           <div className="flex items-center justify-start space-x-3">
             <div className="avatar">
              <div className="mask mask-squircle w-24 h-24">
               <img
@@ -138,11 +138,13 @@ export const MyReviewList = ({ loggedInUser }) => {
              </div>
             </div>
             <div>
-             <div className="font-bold text-2xl">{r.movie.title}</div>
+             <div className="font-bold text-2xl text-center">
+              {r.movie.title}
+             </div>
             </div>
            </div>
           </td>
-          <td className="w-3/6 text-xl">{r.content}</td>
+          <td className="w-4/6 text-xl">{r.content}</td>
           <td>
            <div className="flex justify-center">
             <div className="rating rating-md rating-half">
@@ -208,7 +210,7 @@ export const MyReviewList = ({ loggedInUser }) => {
            <div className="flex flex-row justify-center">
             <EditReviewForm review={r} getData={getData} />
             <button
-             className="btn btn-warning mx-2"
+             className="btn btn-error mx-2 text-xl"
              onClick={() => {
               handleDeleteButton(r.id);
              }}

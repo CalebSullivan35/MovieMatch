@@ -26,9 +26,12 @@ export const MovieTrailer = ({ movie }) => {
 
  if (!youtubeVideo) {
   return (
-   <div className="px-2 mt-5 w-full aspect-video md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
+   <div
+    className="aspect-video w-11/12
+   sm:w-4/6 mt-10 p-5 bg-primary-content"
+   >
     <iframe
-     className=" w-full h-full"
+     className="w-full h-full"
      src={`https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1`}
      title="YouTube video player"
      frameborder="0"
@@ -40,9 +43,12 @@ export const MovieTrailer = ({ movie }) => {
  }
 
  return (
-  <div className="px-2 mt-5 w-full aspect-video md:w-8/12 lg:w-4/5 xl:w-2/3 2xl:w-7/12">
+  <div
+   className="aspect-video w-11/12
+  sm:w-4/6  p-3 bg-primary-content md:p-20 "
+  >
    <iframe
-    className="w-full h-full"
+    className="w-full h-full rounded-3xl"
     src={`https://www.youtube.com/embed/${youtubeVideo.key}`}
     title="YouTube video player"
     frameborder="0"

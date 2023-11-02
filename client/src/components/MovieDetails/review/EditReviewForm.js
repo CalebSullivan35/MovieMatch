@@ -38,12 +38,12 @@ export const EditReviewForm = ({ review, getData }) => {
  }
  return (
   <>
-   <button className="btn btn-primary" onClick={() => setData()}>
+   <button className="btn btn-primary text-xl" onClick={() => setData()}>
     Edit Review
    </button>
    <dialog id={`my_modal_Edit_${review.id}`} className="modal">
     <div className="modal-box">
-     <h3 className="font-bold text-lg mb-2">Edit Review!</h3>
+     <h3 className="font-bold text-2xl mb-2">Edit Review!</h3>
      <div className="form-control">
       <div>
        <div className="rating rating-lg rating-half">
@@ -138,7 +138,7 @@ export const EditReviewForm = ({ review, getData }) => {
        </div>
       </div>
       <textarea
-       className="textarea textarea-bordered h-24"
+       className="textarea textarea-bordered h-24 text-2xl"
        placeholder="Type Here..."
        value={updatedReviewContent}
        onChange={(e) => {
@@ -150,14 +150,14 @@ export const EditReviewForm = ({ review, getData }) => {
      <div className="modal-action">
       <form method="dialog">
        <button
-        className="btn btn-primary mr-2"
+        className="btn btn-primary mr-2 text-xl"
         onClick={() => {
          handleSubmitButton();
         }}
        >
         Submit
        </button>
-       <button className="btn btn-error">Cancel</button>
+       <button className="btn btn-error text-xl">Cancel</button>
       </form>
      </div>
     </div>
