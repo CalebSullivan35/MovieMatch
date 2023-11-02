@@ -20,3 +20,21 @@ body {
 code {
  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+/* CSS */
+.custom-transition {
+ background-color: rgba(0, 0, 0, 0);
+ transition: background-color 0.3s ease-in-out;
+}
+
+.custom-transition:hover {
+ background-color: rgba(0, 0, 0, 0.75);
+}
+
+.custom-transition-text {
+ opacity: 0;
+ transition: opacity 0.3s ease-in-out;
+}
+
+.custom-transition:hover .custom-transition-text {
+ opacity: 1;
+}

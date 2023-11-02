@@ -80,12 +80,12 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     )}
 
     <a
-     className="btn btn-ghost normal-case text-3xl text-"
+     className="btn btn-ghost normal-case text-5xl text-"
      onClick={() => {
       navigate("/");
      }}
     >
-     MovieMatch
+     <span className=" text-primary font mr-0">Movie</span>Match
     </a>
    </div>
 
@@ -94,10 +94,14 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
      {loggedInUser ? (
       <>
        <Link to="/favoritelist">
-        <button className="btn btn-ghost text-lg">My Favorites</button>
+        <button className="btn btn-ghost text-xl xl:text-3xl">
+         My Favorites
+        </button>
        </Link>
        <Link to="/myreviews">
-        <button className="btn btn-ghost text-lg">My Reviews</button>
+        <button className="btn btn-ghost text-xl xl:text-3xl">
+         My Reviews
+        </button>
        </Link>
       </>
      ) : (
@@ -107,7 +111,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
     {loggedInUser ? (
      <>
       <button
-       className="btn btn-ghost mr-5 hidden md:flex text-lg"
+       className="btn btn-ghost mr-5 hidden md:flex text-xl xl:text-3xl"
        onClick={(e) => {
         e.preventDefault();
         setOpen(false);
@@ -122,7 +126,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
      </>
     ) : (
      <button
-      className="btn btn-ghost mr-5 hidden md:flex text-lg"
+      className="btn btn-ghost mr-5 hidden md:flex text-3xl"
       onClick={() => {
        navigate("/login");
       }}

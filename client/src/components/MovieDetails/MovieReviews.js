@@ -11,11 +11,13 @@ export const MovieReviews = ({ reviews, loggedInUser, getData }) => {
    getData();
   });
  };
-
+ if (reviews.length < 1) {
+  return "";
+ }
  return (
-  <div className="mt-12 mx-4 w-full sm:w-8/12 bg-primary-content p-5 rounded-xl">
+  <div className="mx-4 mb-5 w-11/12 sm:w-8/12 bg-primary-content p-5 rounded-b-2xl">
    {reviews.length > 0 ? (
-    <h1 className="text-left text-5xl mb-5 underline">REVIEWS</h1>
+    <h1 className="text-center text-5xl mb-5 underline">REVIEWS</h1>
    ) : (
     ""
    )}

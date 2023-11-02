@@ -47,7 +47,7 @@ export const MovieCard = ({ movie, loggedInUser, getData }) => {
   if (myRelationships.some((r) => r.matchingMovieInteger === movie.id)) {
    return (
     <button
-     className="btn btn-error text-xl mr-5"
+     className="btn btn-error sm:text-xl mr-5"
      onClick={() => {
       handleDeleteButton();
      }}
@@ -58,7 +58,7 @@ export const MovieCard = ({ movie, loggedInUser, getData }) => {
   } else {
    return (
     <button
-     className="btn btn-primary text-xl mr-5"
+     className="btn btn-primary sm:text-xl mr-5"
      onClick={() => {
       handleAddButton();
      }}
@@ -72,7 +72,7 @@ export const MovieCard = ({ movie, loggedInUser, getData }) => {
  return (
   <div
    className="flex flex-col justify-center w-11/12
-  sm:w-4/6 lg:flex-row bg-primary-content p-2 xl:p-5 rounded-2xl"
+  sm:w-4/6 lg:flex-row bg-primary-content p-2 xl:p-5 rounded-t-2xl"
   >
    <div className="rounded-2xl lg:w-2/6">
     <img
@@ -84,7 +84,7 @@ export const MovieCard = ({ movie, loggedInUser, getData }) => {
    <div className=" flex items-center px-2 mt-5 w-full  flex-col lg:w-4/6 2xl:w-3/4">
     <h1 className="text-6xl text-center font-bold">{movie.title}</h1>
     <h2 className="text-2xl text-center italic mb-5">{movie.tagline}</h2>
-    <p className="inline-block text-2xl opacity-70">
+    <p className="text-2xl opacity-70 justify-center text-center">
      {movie?.genres.map((g) => {
       return <span className="mr-2">{g.name}</span>;
      })}

@@ -32,14 +32,14 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
  return (
   <>
    <button
-    className="text-xl btn btn-secondary"
+    className="sm:text-xl btn btn-secondary"
     onClick={() => document.getElementById("my_modal_1").showModal()}
    >
     Leave A Review
    </button>
    <dialog id="my_modal_1" className="modal">
     <div className="modal-box">
-     <h3 className="font-bold text-lg mb-2">New Review!</h3>
+     <h3 className="font-bold text-2xl mb-2">New Review!</h3>
      <div className="form-control">
       <div>
        <div className="rating rating-lg rating-half">
@@ -134,7 +134,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
        </div>
       </div>
       <textarea
-       className=" textarea textarea-bordered h-24"
+       className=" textarea textarea-bordered h-24 text-2xl"
        placeholder="Type Here..."
        value={newReviewContent}
        onChange={(e) => {
@@ -146,7 +146,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
      <div className="modal-action">
       <form method="dialog">
        <button
-        className="btn btn-primary mr-2"
+        className="btn btn-primary mr-2 text-xl"
         onClick={() => {
          handleSubmit();
         }}
@@ -154,7 +154,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
         Submit
        </button>
        <button
-        className="btn btn-error"
+        className="btn btn-error text-xl"
         onClick={() => {
          resetState();
         }}
