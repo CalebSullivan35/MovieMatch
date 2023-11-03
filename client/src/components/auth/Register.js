@@ -37,69 +37,69 @@ export default function Register({ setLoggedInUser }) {
  };
 
  return (
-  <div className="container mx-auto max-w-md p-4 bg-white shadow-md rounded-lg">
-   <h3 className="text-2xl font-semibold mb-4">Sign Up</h3>
+  <div className="container mx-auto max-w-md p-4 bg-neutral-content shadow-md rounded-lg mt-20">
+   <h3 className="text-5xl font-semibold mb-4 text-black text-center ">
+    Sign Up
+   </h3>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block text-black text-2xl font-medium mb-1">
      First Name
     </label>
     <input
-     className="w-full border rounded-lg p-2"
+     className="w-full border rounded-lg p-2 text-2xl text-black bg-white"
      type="text"
      value={firstName}
      onChange={(e) => setFirstName(e.target.value)}
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block text-black text-2xl font-medium mb-1">
      Last Name
     </label>
     <input
-     className="w-full border rounded-lg p-2"
+     className="w-full border rounded-lg p-2 text-black text-2xl bg-white"
      type="text"
      value={lastName}
      onChange={(e) => setLastName(e.target.value)}
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
-     Email
-    </label>
+    <label className="block font-medium mb-1 text-black text-2xl">Email</label>
     <input
-     className="w-full border rounded-lg p-2"
+     className="w-full border rounded-lg p-2 text-black text-2xl bg-white"
      type="email"
      value={email}
      onChange={(e) => setEmail(e.target.value)}
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block font-medium mb-1 text-black text-2xl">
      User Name
     </label>
     <input
-     className="w-full border rounded-lg p-2"
+     className="w-full border rounded-lg p-2 text-black text-2xl bg-white"
      type="text"
      value={userName}
      onChange={(e) => setUserName(e.target.value)}
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block text-black text-2xl font-medium mb-1 ">
      Address
     </label>
     <input
-     className="w-full border rounded-lg p-2"
+     className="w-full border rounded-lg p-2 bg-white"
      type="text"
      value={address}
      onChange={(e) => setAddress(e.target.value)}
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block text-black text-2xl font-medium mb-1">
      Password
     </label>
     <input
-     className={`w-full border rounded-lg p-2 ${
+     className={`w-full border rounded-lg p-2 text-black text-2xl bg-white${
       passwordMismatch ? "border-red-500" : ""
      }`}
      type="password"
@@ -111,11 +111,11 @@ export default function Register({ setLoggedInUser }) {
     />
    </div>
    <div className="mb-4">
-    <label className="block text-gray-600 text-sm font-medium mb-1">
+    <label className="block text-black text-2xl font-medium mb-1">
      Confirm Password
     </label>
     <input
-     className={`w-full border rounded-lg p-2 ${
+     className={`w-full border rounded-lg p-2 text-black text-2xl bg-white${
       passwordMismatch ? "border-red-500" : ""
      }`}
      type="password"
@@ -130,15 +130,15 @@ export default function Register({ setLoggedInUser }) {
     )}
    </div>
    <button
-    className="w-full bg-blue-500 text-white p-2 rounded-lg mb-4"
+    className="w-full bg-primary text-2xl text-black font-bold p-2 rounded-lg mb-4"
     onClick={handleSubmit}
     disabled={passwordMismatch}
    >
     Register
    </button>
-   <p className="text-gray-600 text-sm">
+   <p className="text-black text-lg">
     Already signed up?{" "}
-    <Link to="/login" className="text-blue-500">
+    <Link to="/login" className="text-primary text-xl">
      Log in here
     </Link>
    </p>

@@ -17,7 +17,7 @@ export default function NavBar({ loggedInUser, setLoggedInUser }) {
 
  const handleToggle = (e) => {
   if (e.target.checked) {
-   setTheme("autumn");
+   setTheme("light");
   } else {
    setTheme("night");
   }

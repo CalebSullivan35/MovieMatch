@@ -9,7 +9,6 @@ import { useNavigate } from "react-router-dom";
 import { MovieCarousel } from "./MovieCarousel";
 
 export const HomeList = () => {
- //store all the movies in state.
  const [popularMovies, setPopularMovies] = useState([]);
  const [topRatedMovies, setTopRatedMovies] = useState([]);
  const [latestReleasedMovies, setlatestReleasedMovies] = useState([]);
@@ -23,13 +22,13 @@ export const HomeList = () => {
   getLatestReleasedMovies().then(setlatestReleasedMovies);
   getTopRatedMovies().then(setTopRatedMovies);
  }
-
+ // initial use effect to get data
  useEffect(() => {
   getData();
  }, []);
+ //function that will fetch five pages worth of data. Since limited to 1 page per fetch.
  async function getFivePages() {
   const allMovies = [];
-
   for (let page = 1; page <= 3; page++) {
    const pageData = await searchMovie(searchTerms, page);
    if (pageData.results && Array.isArray(pageData.results)) {
@@ -38,7 +37,7 @@ export const HomeList = () => {
   }
   return allMovies;
  }
-
+ //logic to handle the search bar
  const handleSearch = async (e) => {
   setSearchTerms(e.target.value);
   if (searchTerms === "") {
@@ -55,9 +54,10 @@ export const HomeList = () => {
  if (popularMovies.length < 1) {
   return <p>Loading....</p>;
  }
+
  return (
   <>
-   <div className="flex flex-col  items-center ">
+   <div className="flex flex-col items-center ">
     <div className="input input-bordered input-primary flex flex-row p-5 items-center w-9/12 sm:w-5/12 text-2xl 2xl:text-3xl 2xl:h-16">
      <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -82,7 +82,6 @@ export const HomeList = () => {
       }}
      />
     </div>
-
     {searchTerms != "" ? (
      <div className="w-full flex flex-col  items-center">
       <h1 className="mt-10 text-left text-2xl font-medium xl:text-5xl w-11/12 border-b-2 text-primary border-primary">
@@ -90,6 +89,7 @@ export const HomeList = () => {
       </h1>
       <div className="grid grid-cols-2 md:grid-cols-3 md:mx-10 xl:grid-cols-4 2xl:grid-cols-5 mb-5 w-11/12 mt-5">
        {searchResults?.map((sr) =>
+        //make sure its english anda poster image exists
         sr.original_language === "en" && sr.poster_path !== null ? (
          <div
           className="relative carousel-item flex flex-col"

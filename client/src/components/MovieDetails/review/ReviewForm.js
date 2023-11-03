@@ -4,12 +4,12 @@ import { postNewReview } from "../../../managers/reviewManager";
 export const ReviewForm = ({ loggedInUser, movie, getData }) => {
  const [newReviewContent, setNewReviewContent] = useState("");
  const [newRating, setNewRating] = useState(0);
-
+//function to reset state
  const resetState = () => {
   setNewReviewContent("");
   setNewRating(0);
  };
-
+//function that will send the new review to api
  const handleSubmit = () => {
   const newReview = {
    UserProfileId: loggedInUser.id,
@@ -22,7 +22,7 @@ export const ReviewForm = ({ loggedInUser, movie, getData }) => {
    getData().then(resetState());
   });
  };
-
+//function that will manage the rating changes. 
  const handleRatingChange = (e) => {
   setNewRating(parseFloat(e.target.value));
  };
