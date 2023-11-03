@@ -5,8 +5,7 @@ export const EditReviewForm = ({ review, getData }) => {
  const [updatedReviewContent, setUpdatedReviewContent] = useState("");
  const [updatedRating, setUpdatedRating] = useState(0);
 
- //we first need to get and store the review we are seletecting.
-
+ //we first need to get and store the review we are selecting.
  const setData = () => {
   document.getElementById(`my_modal_Edit_${review.id}`).showModal();
   setUpdatedRating(parseFloat(review.rating));
@@ -16,7 +15,7 @@ export const EditReviewForm = ({ review, getData }) => {
  const handleRatingChange = (e) => {
   setUpdatedRating(parseFloat(e.target.value));
  };
-
+ //function to handle submit for a review.
  const handleSubmitButton = () => {
   const updatedReview = {
    Id: review.id,
@@ -26,7 +25,7 @@ export const EditReviewForm = ({ review, getData }) => {
    Content: updatedReviewContent,
    DateAdded: review.DateAdded,
   };
-
+  //call update review to send new data to api
   updateReview(updatedReview).then(() => {
    console.log("Before getData");
    getData();

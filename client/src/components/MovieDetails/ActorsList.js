@@ -20,7 +20,7 @@ export const ActorsList = ({ movie }) => {
 
  const itemWidth = 200; // Adjust the item width as needed
  const scrollAmount = 3;
-
+//function to handle the scrolling carousel.
  const scrollCarousel = (direction) => {
   const scrollContainer = carouselRef.current;
   if (scrollContainer) {

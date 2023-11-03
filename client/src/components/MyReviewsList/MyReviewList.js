@@ -2,9 +2,11 @@ import { useEffect, useState, useContext } from "react";
 import { deleteReview, getReviewByUserId } from "../../managers/reviewManager";
 import { EditReviewForm } from "../MovieDetails/review/EditReviewForm";
 import { useMediaQuery } from "@uidotdev/usehooks";
+import { useNavigate } from "react-router-dom";
 
 export const MyReviewList = ({ loggedInUser }) => {
  const isLargeScreen = useMediaQuery("(min-width: 1024px)");
+ const navigate = useNavigate();
  const [myReviews, setMyReviews] = useState([]);
 
  //get all the reviews
@@ -28,9 +30,13 @@ export const MyReviewList = ({ loggedInUser }) => {
      {myReviews.map((r) => {
       return (
        <div className="flex items-center w-4/6 flex-col border my-2 py-4 rounded-xl">
-        <div className="mask mask-squircle w-24 h-24">
+        <div className="mask mask-squircle w-24 h-24 hover:cursor-pointer">
          <img
           src={`http://image.tmdb.org/t/p/w185/${r.movie.posterPath}`}
+          className="hover:cursor-pointer"
+          onClick={() => {
+           navigate(`/movie/${r.movie.id}`);
+          }}
           alt="Avatar Tailwind CSS Component"
          />
         </div>
@@ -130,10 +136,14 @@ export const MyReviewList = ({ loggedInUser }) => {
           <td>
            <div className="flex items-center justify-start space-x-3">
             <div className="avatar">
-             <div className="mask mask-squircle w-24 h-24">
+             <div className="mask mask-squircle w-24 h-24 hover:cursor-pointer">
               <img
                src={`http://image.tmdb.org/t/p/w185/${r.movie.posterPath}`}
                alt="Avatar Tailwind CSS Component"
+               className="hover:cursor-pointer"
+               onClick={() => {
+                navigate(`/movie/${r.movie.id}`);
+               }}
               />
              </div>
             </div>

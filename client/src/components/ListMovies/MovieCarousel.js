@@ -5,11 +5,11 @@ import { useState } from "react";
 export const MovieCarousel = ({ movieList, heading }) => {
  const [hoveredMovie, setHoveredMovie] = useState(null);
 
- const carouselRef = useRef(null);
  const navigate = useNavigate();
- const itemWidth = 300; // Adjust the item width as needed
+ const carouselRef = useRef(null);
+ const itemWidth = 300; // Adjust the item width as needed to change scroll width
  const scrollAmount = 3;
-
+ //function that handles the ability to scroll
  const scrollCarousel = (direction) => {
   const scrollContainer = carouselRef.current;
   if (scrollContainer) {

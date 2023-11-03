@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { GrSubtractCircle } from "react-icons/gr";
 
 export const FavoritesList = ({ loggedInUser }) => {
+ //list of all possibe genres
  const genres = [
   "Action",
   "Adventure",
@@ -28,10 +29,10 @@ export const FavoritesList = ({ loggedInUser }) => {
   "War",
   "Western",
  ];
+
  const [myFavorites, setMyFavorites] = useState([]);
  const [selectedGenre, setSelectedGenre] = useState(null);
  const [moviesToDisplay, setMoviesToDisplay] = useState([]);
-
  const navigate = useNavigate();
  function getData() {
   getUserProfileMovieByUserId(loggedInUser.id).then(setMyFavorites);
@@ -39,9 +40,12 @@ export const FavoritesList = ({ loggedInUser }) => {
  function handleDeleteButton(id) {
   deleteUserProfileMovie(id).then(() => getData());
  }
+
+ //useEffect To get all initial data.
  useEffect(() => {
   getData();
  }, []);
+
  //useEffect to intially set movies to display as all favorites.
  useEffect(() => {
   setMoviesToDisplay(myFavorites);
