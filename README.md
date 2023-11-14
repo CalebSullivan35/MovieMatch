@@ -6,6 +6,7 @@ The project's vision was to craft a dynamic and resilient website, offering user
 
 ## How does it work?
 MovieMatch has a core few features to assist all movie viewers:
+
 -Effortlessly search for any movie.
 -Curate a personalized list of favorite movies, with the flexibility to add and remove selections at will.
 -Engage in the interactive review feature, enabling users to share, edit, and manage their thoughts on movies with ease.
