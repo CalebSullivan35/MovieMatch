@@ -1,10 +1,10 @@
 ## MovieMatch
 Movie Match is a full-stack application that serves as a movie media platform tailored to movie fanatics.  
 
-##Why was it made?
+## Why was it made?
 The project's vision was to craft a dynamic and resilient website, offering users a comprehensive hub for in-depth insights into any movie. In addition to serving as a rich repository of movie information, the platform fosters an engaging and interactive community centered around movie reviews.
 
-##How does it work?
+## How does it work?
 MovieMatch has a core few features to assist all movie viewers:
 -Effortlessly search for any movie.
 -Curate a personalized list of favorite movies, with the flexibility to add and remove selections at will.
